@@ -4,315 +4,579 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Boda Alberto & Sofía</title>
-  <meta name="description" content="Invitación - Alberto & Sofía" />
+  <meta name="description" content="Invitación de boda - Alberto & Sofía" />
+
+  <!-- Tipografías -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
   <style>
     :root{
-      --bg:#0b0d12; --card:#121622; --text:#f2f4f8; --muted:#b7c0d1;
-      --accent:#ffcf6a; --accent2:#7dd3fc; --line:#1f2636;
+      --bg: #07080b;
+      --card: rgba(255,255,255,.06);
+      --card2: rgba(255,255,255,.085);
+      --line: rgba(255,255,255,.14);
+      --text: rgba(255,255,255,.94);
+      --muted: rgba(255,255,255,.68);
+      --muted2: rgba(255,255,255,.55);
+      --gold: #d6b36a;
+      --gold2:#f2ddaa;
+      --shadow: 0 20px 60px rgba(0,0,0,.55);
+      --radius: 22px;
     }
+
     *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
     body{
-      margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: radial-gradient(1200px 700px at 70% -10%, rgba(255,207,106,.15), transparent 60%),
-                  radial-gradient(900px 600px at 10% 0%, rgba(125,211,252,.12), transparent 55%),
-                  var(--bg);
+      margin:0;
       color:var(--text);
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(900px 500px at 80% -10%, rgba(214,179,106,.18), transparent 55%),
+        radial-gradient(700px 450px at 10% 0%, rgba(255,255,255,.10), transparent 60%),
+        radial-gradient(900px 550px at 20% 110%, rgba(214,179,106,.12), transparent 60%),
+        var(--bg);
+      overflow-x:hidden;
     }
-    a{color:inherit}
-    .container{max-width:980px; margin:0 auto; padding:24px}
+
+    /* Layout */
+    .wrap{max-width:1100px; margin:0 auto; padding:26px 18px 70px;}
+    .nav{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background: rgba(7,8,11,.55);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .nav-inner{
+      max-width:1100px; margin:0 auto; padding:14px 18px;
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+    }
+    .brand{
+      display:flex; align-items:baseline; gap:10px; white-space:nowrap;
+    }
+    .brand b{
+      font-family:"Playfair Display", serif;
+      letter-spacing:.5px;
+      font-weight:700;
+      font-size:18px;
+    }
+    .brand span{color:var(--muted); font-size:12px}
+    .nav a{
+      color:var(--muted);
+      text-decoration:none;
+      font-size:13px;
+      padding:8px 10px;
+      border-radius:12px;
+      border:1px solid transparent;
+    }
+    .nav a:hover{color:var(--text); border-color:rgba(255,255,255,.10); background:rgba(255,255,255,.04)}
+    .navlinks{display:flex; gap:6px; flex-wrap:wrap; justify-content:flex-end}
+
+    /* Hero */
     .hero{
-      display:grid; gap:18px; padding:22px; border:1px solid var(--line); border-radius:18px;
-      background: linear-gradient(180deg, rgba(18,22,34,.9), rgba(18,22,34,.65));
+      margin-top:22px;
+      border-radius:28px;
       overflow:hidden;
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow: var(--shadow);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      position:relative;
     }
-    .hero-top{
-      display:flex; flex-wrap:wrap; gap:16px; align-items:center; justify-content:space-between;
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:0;
+      min-height:520px;
     }
-    .names{
-      line-height:1.05;
+    @media (max-width:920px){
+      .hero-grid{grid-template-columns:1fr; min-height:auto}
     }
-    .names h1{margin:0; font-size:40px; letter-spacing:.5px}
-    .names p{margin:8px 0 0; color:var(--muted)}
+
+    .hero-photo{
+      position:relative;
+      min-height:520px;
+      background:
+        linear-gradient(90deg, rgba(7,8,11,.10), rgba(7,8,11,.80)),
+        url("img/hero.jpg") center/cover no-repeat;
+    }
+    @media (max-width:920px){
+      .hero-photo{min-height:420px; background:
+        linear-gradient(180deg, rgba(7,8,11,.15), rgba(7,8,11,.88)),
+        url("img/hero.jpg") center/cover no-repeat;}
+    }
+    .hero-photo::after{
+      content:"";
+      position:absolute; inset:0;
+      background: radial-gradient(800px 600px at 20% 20%, rgba(214,179,106,.25), transparent 60%);
+      pointer-events:none;
+    }
+
+    .hero-content{
+      padding:34px 30px;
+      display:flex; flex-direction:column; justify-content:space-between; gap:22px;
+      background: linear-gradient(180deg, rgba(7,8,11,.18), rgba(7,8,11,.42));
+    }
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.04);
+      color:var(--muted);
+      font-size:12px;
+      width:fit-content;
+    }
+    .title{
+      margin:10px 0 0;
+      font-family:"Playfair Display", serif;
+      font-weight:700;
+      letter-spacing:.3px;
+      font-size:52px;
+      line-height:1.02;
+    }
+    @media (max-width:520px){ .title{font-size:40px} }
+    .subtitle{margin:10px 0 0; color:var(--muted); font-size:15px; line-height:1.6}
+
+    .hero-meta{
+      display:grid; gap:12px;
+      grid-template-columns:1fr;
+    }
+    .meta-row{
+      display:flex; gap:10px; flex-wrap:wrap;
+      align-items:center;
+    }
     .pill{
-      display:inline-flex; gap:10px; align-items:center;
-      padding:10px 12px; border:1px solid var(--line); border-radius:999px; color:var(--muted);
-      background: rgba(11,13,18,.35);
+      display:inline-flex; align-items:center; gap:10px;
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      color:var(--muted);
+      font-size:13px;
     }
-    .countdown{
-      display:grid; grid-template-columns:repeat(4, minmax(70px, 1fr)); gap:10px; width:min(420px, 100%);
+    .pill b{color:var(--text); font-weight:600}
+    .accent{color:var(--gold2)}
+
+    /* Countdown */
+    .count{
+      display:grid;
+      grid-template-columns:repeat(4, minmax(0, 1fr));
+      gap:10px;
     }
     .cd{
-      padding:12px; border:1px solid var(--line); border-radius:14px; background: rgba(11,13,18,.35);
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      padding:14px 12px;
       text-align:center;
     }
-    .cd .num{font-size:26px; font-weight:700}
-    .cd .lbl{font-size:12px; color:var(--muted); margin-top:2px}
+    .cd .n{
+      font-size:24px;
+      font-weight:700;
+      color:var(--text);
+      letter-spacing:.5px;
+    }
+    .cd .l{font-size:11px; color:var(--muted2); margin-top:4px; letter-spacing:.15em; text-transform:uppercase}
+
+    /* Sections */
+    .section{margin-top:26px}
+    .section h2{
+      margin:0 0 10px;
+      font-family:"Playfair Display", serif;
+      font-weight:600;
+      letter-spacing:.2px;
+      font-size:26px;
+    }
+    .section p{margin:0; color:var(--muted); line-height:1.7}
+
     .grid{
-      display:grid; gap:16px; margin-top:16px;
-      grid-template-columns: repeat(12, 1fr);
+      margin-top:14px;
+      display:grid; gap:14px;
+      grid-template-columns:repeat(12, 1fr);
     }
     .card{
       grid-column: span 12;
-      border:1px solid var(--line); border-radius:18px; padding:18px;
-      background: rgba(18,22,34,.72);
+      border-radius: var(--radius);
+      border:1px solid rgba(255,255,255,.11);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.045));
+      box-shadow: 0 18px 55px rgba(0,0,0,.35);
+      overflow:hidden;
     }
-    .card h2{margin:0 0 10px; font-size:22px}
-    .muted{color:var(--muted)}
+    .card-inner{padding:18px}
     .two{display:grid; gap:14px; grid-template-columns:1fr}
-    @media (min-width:820px){ .two{grid-template-columns:1fr 1fr} }
-    .photo{
-      width:100%; height:240px; border-radius:16px; border:1px solid var(--line);
-      background: #0f1320 center/cover no-repeat;
+    @media (min-width:900px){ .two{grid-template-columns:1fr 1fr} }
+
+    .media{
+      min-height:260px;
+      background:#0f1118 center/cover no-repeat;
+      border-bottom:1px solid rgba(255,255,255,.08);
     }
-    .btnrow{display:flex; flex-wrap:wrap; gap:10px; margin-top:12px}
+    .media.templo{background-image:url("img/templo.jpg")}
+    .media.salon{background-image:url("img/salon.jpg")}
+    .media.g1{background-image:url("img/nosotros-1.jpg")}
+    .media.g2{background-image:url("img/nosotros-2.jpg")}
+    .media.g3{background-image:url("img/galeria-3.jpg")}
+    .media.g4{background-image:url("img/galeria-4.jpg")}
+
+    /* Buttons */
+    .btnrow{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
     .btn{
-      display:inline-flex; gap:10px; align-items:center;
-      padding:10px 12px; border-radius:12px; border:1px solid var(--line);
-      text-decoration:none; background: rgba(11,13,18,.35);
-    }
-    .btn:hover{border-color:rgba(255,255,255,.22)}
-    .badge{
-      display:inline-block; padding:6px 10px; border-radius:999px;
-      border:1px solid var(--line); background: rgba(11,13,18,.35); color:var(--muted);
-      font-size:12px;
-    }
-    ul{margin:10px 0 0; padding-left:18px}
-    li{margin:6px 0}
-    .divider{height:1px; background:var(--line); margin:14px 0}
-    .footer{padding:18px 0 30px; text-align:center; color:var(--muted); font-size:13px}
-    .logo{
       display:inline-flex; align-items:center; gap:10px;
+      padding:11px 14px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.05);
+      color:var(--text);
+      text-decoration:none;
+      font-size:13px;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+      will-change: transform;
     }
-    .amazon{
-      width:22px; height:22px; border-radius:6px; background:#111; border:1px solid var(--line);
-      display:inline-grid; place-items:center; font-weight:800;
+    .btn:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.08);
+      border-color: rgba(214,179,106,.35);
     }
-    iframe{width:100%; border:1px solid var(--line); border-radius:16px; background:#fff}
-    .small{font-size:13px}
+    .btn.gold{
+      background: linear-gradient(180deg, rgba(214,179,106,.28), rgba(214,179,106,.16));
+      border-color: rgba(214,179,106,.42);
+    }
+    .btn.gold:hover{border-color: rgba(214,179,106,.65)}
+    .divider{height:1px; background: rgba(255,255,255,.10); margin:14px 0}
+
+    .badge{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      color:var(--muted2);
+      font-size:12px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      width:fit-content;
+    }
+
+    /* Dress code columns */
+    .cols{
+      display:grid; gap:14px;
+      grid-template-columns:1fr;
+    }
+    @media (min-width:900px){ .cols{grid-template-columns:1fr 1fr} }
+    ul{margin:10px 0 0; padding-left:18px; color:var(--muted); line-height:1.75}
+    li{margin:6px 0}
+
+    /* RSVP */
+    iframe{
+      width:100%;
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:18px;
+      background:#fff;
+    }
+
+    /* Footer */
+    .footer{
+      margin-top:28px;
+      padding-top:22px;
+      border-top:1px solid rgba(255,255,255,.10);
+      color:var(--muted2);
+      text-align:center;
+      font-size:13px;
+    }
   </style>
 </head>
 
 <body>
-  <div class="container">
+  <div class="nav">
+    <div class="nav-inner">
+      <div class="brand">
+        <b>Alberto & Sofía</b>
+        <span>· Invitación</span>
+      </div>
+      <div class="navlinks">
+        <a href="#fecha">Fecha</a>
+        <a href="#ceremonia">Ceremonia</a>
+        <a href="#fiesta">Fiesta</a>
+        <a href="#regalos">Regalos</a>
+        <a href="#vestimenta">Vestimenta</a>
+        <a href="#rsvp">RSVP</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
 
     <!-- HERO -->
-    <section class="hero">
-      <div class="hero-top">
-        <div class="names">
-          <h1>Alberto & Sofía</h1>
-          <p>Nos casamos y nos encantaría compartir este día contigo.</p>
-          <div class="pill" style="margin-top:12px">
-            <span>📅</span>
-            <span><strong id="dateText">Sábado 27 de junio de 2026</strong> · <span class="muted" id="timeText">Hora por confirmar</span></span>
-          </div>
-        </div>
+    <section class="hero" id="fecha">
+      <div class="hero-grid">
+        <div class="hero-photo" aria-label="Foto principal"></div>
 
-        <div>
-          <div class="badge">Cuenta regresiva</div>
-          <div class="countdown" style="margin-top:10px">
-            <div class="cd"><div class="num" id="d">--</div><div class="lbl">Días</div></div>
-            <div class="cd"><div class="num" id="h">--</div><div class="lbl">Horas</div></div>
-            <div class="cd"><div class="num" id="m">--</div><div class="lbl">Min</div></div>
-            <div class="cd"><div class="num" id="s">--</div><div class="lbl">Seg</div></div>
-          </div>
-        </div>
-      </div>
+        <div class="hero-content">
+          <div>
+            <div class="kicker">✨ Invitación · <span class="accent">Formal</span></div>
+            <h1 class="title">Nos casamos</h1>
+            <p class="subtitle">
+              Nos haría muy felices compartir este día contigo.
+              Gracias por acompañarnos a celebrar el inicio de esta nueva etapa.
+            </p>
 
-      <!-- Fotos de ustedes -->
-      <div class="two">
-        <div>
-          <div class="badge">Nosotros</div>
-          <div class="photo" style="margin-top:10px; background-image:url('img/nosotros-1.jpg');"></div>
-          <p class="muted small" style="margin:10px 0 0;">Cambia esta foto: <code>img/nosotros-1.jpg</code></p>
-        </div>
-        <div>
-          <div class="badge">Nosotros</div>
-          <div class="photo" style="margin-top:10px; background-image:url('img/nosotros-2.jpg');"></div>
-          <p class="muted small" style="margin:10px 0 0;">Cambia esta foto: <code>img/nosotros-2.jpg</code></p>
+            <div class="hero-meta">
+              <div class="meta-row">
+                <div class="pill">📅 <b id="dateText">Sábado 27 de junio de 2026</b></div>
+                <div class="pill">🕒 <b id="timeText">Hora por confirmar</b></div>
+              </div>
+
+              <div class="badge">Cuenta regresiva</div>
+              <div class="count">
+                <div class="cd"><div class="n" id="d">—</div><div class="l">Días</div></div>
+                <div class="cd"><div class="n" id="h">—</div><div class="l">Horas</div></div>
+                <div class="cd"><div class="n" id="m">—</div><div class="l">Min</div></div>
+                <div class="cd"><div class="n" id="s">—</div><div class="l">Seg</div></div>
+              </div>
+
+              <div class="btnrow">
+                <a class="btn gold" href="#rsvp">✅ Confirmar asistencia</a>
+                <a class="btn" href="#ceremonia">⛪ Ver ceremonia</a>
+                <a class="btn" href="#fiesta">🎉 Ver fiesta</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="pill" style="justify-content:space-between">
+            <span>📍 Ciudad</span>
+            <b id="cityText">Ciudad Guzmán, Jalisco</b>
+          </div>
         </div>
       </div>
     </section>
 
-    <div class="grid">
-
-      <!-- CEREMONIA -->
-      <section class="card">
-        <h2>⛪ Ceremonia</h2>
-        <p class="muted">Aquí va el nombre del templo y la hora de la ceremonia.</p>
-
-        <div class="two">
-          <div>
-            <div class="photo" style="background-image:url('img/templo.jpg');"></div>
-            <p class="muted small" style="margin:10px 0 0;">Foto del templo: <code>img/templo.jpg</code></p>
+    <!-- GALERÍA -->
+    <section class="section" style="margin-top:22px">
+      <h2>Momentos</h2>
+      <p>Algunas fotos para ir calentando el corazón antes del gran día.</p>
+      <div class="grid">
+        <div class="card" style="grid-column:span 12">
+          <div class="two">
+            <div class="media g1"></div>
+            <div class="media g2"></div>
           </div>
-          <div>
-            <p><strong>Templo:</strong> <span id="templeName">[Nombre del templo]</span></p>
-            <p><strong>Dirección:</strong> <span id="templeAddr">[Dirección del templo]</span></p>
+          <div class="two">
+            <div class="media g3" style="min-height:220px"></div>
+            <div class="media g4" style="min-height:220px"></div>
+          </div>
+        </div>
+      </div>
+      <p style="margin-top:10px; color:var(--muted2); font-size:13px;">
+        Tip: usa <code>img/hero.jpg</code> como foto principal. Si no tienes aún, duplica una de ustedes y renómbrala.
+      </p>
+    </section>
+
+    <!-- CEREMONIA -->
+    <section class="section" id="ceremonia">
+      <h2>Ceremonia</h2>
+      <p>Te esperamos con tiempo para iniciar puntuales.</p>
+
+      <div class="grid">
+        <div class="card">
+          <div class="media templo"></div>
+          <div class="card-inner">
+            <div class="badge">⛪ Templo</div>
+            <div class="divider"></div>
+            <p><b id="templeName">[Nombre del templo]</b></p>
+            <p class="muted" id="templeAddr">[Dirección del templo]</p>
             <div class="btnrow">
               <a class="btn" id="templeGoogle" href="#" target="_blank" rel="noopener">🗺️ Google Maps</a>
               <a class="btn" id="templeApple" href="#" target="_blank" rel="noopener">🍎 Apple Maps</a>
             </div>
             <div class="divider"></div>
-            <p class="muted small">Tip: pon aquí una nota breve tipo “llega 15 min antes” o “habrá estacionamiento en…”</p>
+            <p class="muted">Sugerencia: llega 15 minutos antes.</p>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- FIESTA -->
-      <section class="card">
-        <h2>🎉 Fiesta</h2>
-        <p class="muted">Lugar de la recepción, hora de inicio y cualquier detalle importante.</p>
+    <!-- FIESTA -->
+    <section class="section" id="fiesta">
+      <h2>Fiesta</h2>
+      <p>Después de la ceremonia, celebramos juntos. ¡Prepárate para bailar!</p>
 
-        <div class="two">
-          <div>
-            <div class="photo" style="background-image:url('img/salon.jpg');"></div>
-            <p class="muted small" style="margin:10px 0 0;">Foto del salón: <code>img/salon.jpg</code></p>
-          </div>
-          <div>
-            <p><strong>Lugar:</strong> <span id="partyName">[Nombre del lugar]</span></p>
-            <p><strong>Dirección:</strong> <span id="partyAddr">[Dirección del lugar]</span></p>
+      <div class="grid">
+        <div class="card">
+          <div class="media salon"></div>
+          <div class="card-inner">
+            <div class="badge">🎉 Recepción</div>
+            <div class="divider"></div>
+            <p><b id="partyName">[Nombre del lugar]</b></p>
+            <p class="muted" id="partyAddr">[Dirección del lugar]</p>
             <div class="btnrow">
               <a class="btn" id="partyGoogle" href="#" target="_blank" rel="noopener">🗺️ Google Maps</a>
               <a class="btn" id="partyApple" href="#" target="_blank" rel="noopener">🍎 Apple Maps</a>
             </div>
+            <div class="divider"></div>
+            <p><b>Cómo llegar</b></p>
+            <ul>
+              <li>Referencia 1 (entrada / estacionamiento)</li>
+              <li>Referencia 2 (punto fácil para ubicar)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REGALOS -->
+    <section class="section" id="regalos">
+      <h2>Regalos</h2>
+      <p>Tu presencia es lo más importante. Si deseas obsequiarnos algo, la lista nos ayuda a evitar repetidos.</p>
+
+      <div class="grid">
+        <div class="card">
+          <div class="card-inner">
+            <div class="badge">🎁 Lista</div>
+            <div class="divider"></div>
+            <div class="btnrow">
+              <a class="btn gold" id="amazonList" href="https://www.amazon.com.mx/" target="_blank" rel="noopener">
+                🛒 Ver lista en Amazon
+              </a>
+            </div>
+            <div class="divider"></div>
+            <ul>
+              <li>También puedes llevar regalo en físico si lo prefieres.</li>
+              <li>Si prefieres efectivo o transferencia, por favor pide los datos bancarios por mensaje (no los publicamos por seguridad).</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VESTIMENTA -->
+    <section class="section" id="vestimenta">
+      <h2>Código de vestimenta</h2>
+      <p><span class="accent"><b>Formal</b></span>. Gracias por ayudarnos a mantener la estética del evento.</p>
+
+      <div class="grid">
+        <div class="card">
+          <div class="card-inner">
+            <div class="badge">👔 Formal</div>
+            <div class="divider"></div>
+            <div class="cols">
+              <div>
+                <p><b>Mujeres</b></p>
+                <ul>
+                  <li>Vestido largo</li>
+                  <li>Estampado discreto</li>
+                  <li><b>No</b> vestido blanco, beige o colores similares</li>
+                  <li>Evitar colores claros</li>
+                </ul>
+              </div>
+              <div>
+                <p><b>Hombres</b></p>
+                <ul>
+                  <li>Traje</li>
+                  <li>Zapatos formales</li>
+                  <li>Corbata sencilla</li>
+                  <li>Camisa formal de manga larga (evitar colores claros)</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RSVP -->
+    <section class="section" id="rsvp">
+      <h2>Confirmación de asistencia (RSVP)</h2>
+      <p>
+        Para organizar mesas y lugares: <b>1 invitación = 1 pase + 1 acompañante máximo</b>.
+        Por favor registra tu nombre completo y, si aplica, el de tu acompañante.
+      </p>
+
+      <div class="grid">
+        <div class="card">
+          <div class="card-inner">
+            <div class="badge">✅ Registro</div>
+            <div class="divider"></div>
+
+            <div class="btnrow">
+              <a class="btn gold" id="rsvpLink" href="#" target="_blank" rel="noopener">📝 Abrir formulario RSVP</a>
+              <a class="btn" id="whats" href="#" target="_blank" rel="noopener">💬 WhatsApp (Alberto)</a>
+            </div>
+
+            <p style="margin-top:10px; color:var(--muted2); font-size:13px;">
+              Recomendación general: preferimos que no asistan niños. Si tienes una situación particular, escríbeme y lo revisamos.
+            </p>
 
             <div class="divider"></div>
 
-            <p><strong>Cómo llegar</strong></p>
-            <ul class="muted">
-              <li>Referencia 1 (ej. “entrada principal por…”)</li>
-              <li>Referencia 2 (ej. “estacionamiento en…”)</li>
-              <li>Si habrá transporte/itinerario, ponlo aquí.</li>
-            </ul>
+            <p class="muted" style="margin-bottom:10px">
+              Si quieres incrustar el formulario aquí (embed), pega el link en el <code>src</code> del iframe:
+            </p>
+
+            <iframe
+              id="rsvpForm"
+              src="https://docs.google.com/forms/d/e/EXAMPLE/viewform?embedded=true"
+              height="820"
+              loading="lazy">
+            </iframe>
           </div>
         </div>
-      </section>
-
-      <!-- REGALOS -->
-      <section class="card">
-        <h2>🎁 Regalos</h2>
-        <p class="muted">
-          Tu presencia es lo más importante. Si deseas regalarnos algo, nos ayudaría mucho usar la lista de Amazon
-          para evitar regalos repetidos.
-        </p>
-
-        <div class="btnrow">
-          <a class="btn" href="https://www.amazon.com.mx/" target="_blank" rel="noopener">
-            <span class="logo"><span class="amazon">a</span> Lista de regalos (Amazon)</span>
-          </a>
-        </div>
-
-        <ul class="muted">
-          <li>También puedes llevar regalo en físico si lo prefieres.</li>
-          <li>Si prefieres apoyar en efectivo o por transferencia, <strong>por favor pídenos los datos bancarios por mensaje</strong>.</li>
-        </ul>
-      </section>
-
-      <!-- CÓDIGO DE VESTIMENTA -->
-      <section class="card">
-        <h2>👔 Código de vestimenta: Formal</h2>
-
-        <div class="two">
-          <div>
-            <p><strong>Mujeres</strong></p>
-            <ul class="muted">
-              <li>Vestido largo</li>
-              <li>Estampado discreto</li>
-              <li><strong>No</strong> vestido blanco, beige o colores similares</li>
-              <li>Evitar colores claros</li>
-            </ul>
-          </div>
-          <div>
-            <p><strong>Hombres</strong></p>
-            <ul class="muted">
-              <li>Traje</li>
-              <li>Zapatos formales</li>
-              <li>Corbata sencilla</li>
-              <li>Camisa formal de manga larga (evitar colores claros)</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- RSVP -->
-      <section class="card">
-        <h2>✅ Confirmación de asistencia (RSVP)</h2>
-        <p class="muted">
-          Esta sección es clave: necesitamos tu registro para organizar mesas y lugares.
-          <strong>Por invitación se considera 1 pase + 1 acompañante máximo</strong>.
-          Por favor escribe tu nombre completo y, si aplica, el nombre de tu acompañante.
-        </p>
-
-        <div class="divider"></div>
-
-        <p><strong>Opción 1 (recomendada): Formulario</strong></p>
-        <p class="muted small">
-          Inserta aquí tu Google Form (Embed). Debajo te dejo un ejemplo.
-        </p>
-
-        <!-- Reemplaza el src por el "Embed" de tu Google Form -->
-        <iframe
-          id="rsvpForm"
-          src="https://docs.google.com/forms/d/e/EXAMPLE/viewform?embedded=true"
-          height="780"
-          loading="lazy">
-        </iframe>
-
-        <div class="divider"></div>
-
-        <p><strong>¿Se te complica o tienes un caso especial (niños)?</strong></p>
-        <p class="muted">
-          Recomendación general: preferimos que no asistan niños. Si tienes una situación particular, por favor contáctame y lo revisamos.
-        </p>
-
-        <!-- Cambia al número real en formato internacional -->
-        <div class="btnrow">
-          <a class="btn" id="whats" href="https://wa.me/5213312345678?text=Hola%20Alberto,%20tengo%20una%20duda%20sobre%20la%20invitaci%C3%B3n%20y%20RSVP" target="_blank" rel="noopener">
-            💬 WhatsApp (Alberto)
-          </a>
-          <a class="btn" href="tel:+523312345678">📞 Llamar</a>
-        </div>
-
-        <p class="muted small" style="margin-top:10px">
-          * Importante: evita poner datos sensibles (como cuenta bancaria) en público.
-        </p>
-      </section>
-
-    </div>
+      </div>
+    </section>
 
     <div class="footer">
-      Hecho con ❤️ para nuestra boda · Alberto & Sofía
+      Alberto & Sofía · Gracias por acompañarnos 🤍
     </div>
+
   </div>
 
   <script>
     // ======================
-    // CONFIGURACIÓN BÁSICA
+    // CONFIG (EDITA AQUÍ)
     // ======================
+    const weddingDate = new Date("2026-06-27T17:00:00"); // AJUSTA HORA
 
-    // Fecha/hora del evento (zona local). Ajusta hora/minuto.
-    // Ejemplo: 2026-06-27T17:00:00 (5:00 PM)
-    const weddingDate = new Date("2026-06-27T17:00:00");
+    const config = {
+      city: "Ciudad Guzmán, Jalisco",
+      timeText: "5:00 PM (por confirmar)",
 
-    // Links: pega URLs reales de Google/Apple Maps
-    const links = {
-      templeGoogle: "https://maps.google.com/?q=Templo+Ejemplo",
-      templeApple:  "https://maps.apple.com/?q=Templo%20Ejemplo",
-      partyGoogle:  "https://maps.google.com/?q=Salon+Ejemplo",
-      partyApple:   "https://maps.apple.com/?q=Salon%20Ejemplo",
+      templeName: "[Nombre del templo]",
+      templeAddr: "[Dirección del templo]",
+      partyName: "[Nombre del salón]",
+      partyAddr: "[Dirección del salón]",
+
+      links: {
+        templeGoogle: "https://maps.google.com/?q=Templo+Ejemplo",
+        templeApple:  "https://maps.apple.com/?q=Templo%20Ejemplo",
+        partyGoogle:  "https://maps.google.com/?q=Salon+Ejemplo",
+        partyApple:   "https://maps.apple.com/?q=Salon%20Ejemplo",
+        amazonList:   "https://www.amazon.com.mx/",
+        rsvpFormOpen: "https://docs.google.com/forms/d/e/EXAMPLE/viewform",
+        whatsapp:     "https://wa.me/5213312345678?text=Hola%20Alberto,%20tengo%20una%20duda%20sobre%20la%20invitaci%C3%B3n%20y%20RSVP"
+      }
     };
 
-    // Textos de lugares
-    document.getElementById("templeName").textContent = "Templo: [por definir]";
-    document.getElementById("templeAddr").textContent = "[Dirección por definir]";
-    document.getElementById("partyName").textContent  = "Recepción: [por definir]";
-    document.getElementById("partyAddr").textContent  = "[Dirección por definir]";
+    // Textos
+    document.getElementById("cityText").textContent = config.city;
+    document.getElementById("timeText").textContent = config.timeText;
 
-    // Asignar links
-    document.getElementById("templeGoogle").href = links.templeGoogle;
-    document.getElementById("templeApple").href  = links.templeApple;
-    document.getElementById("partyGoogle").href  = links.partyGoogle;
-    document.getElementById("partyApple").href   = links.partyApple;
+    document.getElementById("templeName").textContent = config.templeName;
+    document.getElementById("templeAddr").textContent = config.templeAddr;
+    document.getElementById("partyName").textContent  = config.partyName;
+    document.getElementById("partyAddr").textContent  = config.partyAddr;
+
+    // Links
+    document.getElementById("templeGoogle").href = config.links.templeGoogle;
+    document.getElementById("templeApple").href  = config.links.templeApple;
+    document.getElementById("partyGoogle").href  = config.links.partyGoogle;
+    document.getElementById("partyApple").href   = config.links.partyApple;
+    document.getElementById("amazonList").href   = config.links.amazonList;
+    document.getElementById("rsvpLink").href     = config.links.rsvpFormOpen;
+    document.getElementById("whats").href        = config.links.whatsapp;
+
+    // Fecha en texto (opcional)
+    // Si quieres dejarla fija, edita el HTML directo.
+    // document.getElementById("dateText").textContent = "Sábado 27 de junio de 2026";
 
     // ======================
     // COUNTDOWN
@@ -322,32 +586,28 @@
     const elM = document.getElementById("m");
     const elS = document.getElementById("s");
 
-    function pad(n){ return String(n).padStart(2,"0"); }
+    const pad = (n)=> String(n).padStart(2,"0");
 
     function tick(){
       const now = new Date();
-      let diff = weddingDate - now;
+      const diff = weddingDate - now;
 
       if(diff <= 0){
-        elD.textContent = "00";
-        elH.textContent = "00";
-        elM.textContent = "00";
-        elS.textContent = "00";
+        elD.textContent = "00"; elH.textContent = "00"; elM.textContent = "00"; elS.textContent = "00";
         return;
       }
 
       const totalSeconds = Math.floor(diff/1000);
-      const days = Math.floor(totalSeconds / 86400);
+      const days  = Math.floor(totalSeconds / 86400);
       const hours = Math.floor((totalSeconds % 86400) / 3600);
-      const mins = Math.floor((totalSeconds % 3600) / 60);
-      const secs = totalSeconds % 60;
+      const mins  = Math.floor((totalSeconds % 3600) / 60);
+      const secs  = totalSeconds % 60;
 
       elD.textContent = String(days);
       elH.textContent = pad(hours);
       elM.textContent = pad(mins);
       elS.textContent = pad(secs);
     }
-
     tick();
     setInterval(tick, 1000);
   </script>
