@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Boda Alberto & Sofía</title>
+  <meta name="description" content="Invitación - Alberto & Sofía" />
+  <style>
+    :root{
+      --bg:#0b0d12; --card:#121622; --text:#f2f4f8; --muted:#b7c0d1;
+      --accent:#ffcf6a; --accent2:#7dd3fc; --line:#1f2636;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(1200px 700px at 70% -10%, rgba(255,207,106,.15), transparent 60%),
+                  radial-gradient(900px 600px at 10% 0%, rgba(125,211,252,.12), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+    }
+    a{color:inherit}
+    .container{max-width:980px; margin:0 auto; padding:24px}
+    .hero{
+      display:grid; gap:18px; padding:22px; border:1px solid var(--line); border-radius:18px;
+      background: linear-gradient(180deg, rgba(18,22,34,.9), rgba(18,22,34,.65));
+      overflow:hidden;
+    }
+    .hero-top{
+      display:flex; flex-wrap:wrap; gap:16px; align-items:center; justify-content:space-between;
+    }
+    .names{
+      line-height:1.05;
+    }
+    .names h1{margin:0; font-size:40px; letter-spacing:.5px}
+    .names p{margin:8px 0 0; color:var(--muted)}
+    .pill{
+      display:inline-flex; gap:10px; align-items:center;
+      padding:10px 12px; border:1px solid var(--line); border-radius:999px; color:var(--muted);
+      background: rgba(11,13,18,.35);
+    }
+    .countdown{
+      display:grid; grid-template-columns:repeat(4, minmax(70px, 1fr)); gap:10px; width:min(420px, 100%);
+    }
+    .cd{
+      padding:12px; border:1px solid var(--line); border-radius:14px; background: rgba(11,13,18,.35);
+      text-align:center;
+    }
+    .cd .num{font-size:26px; font-weight:700}
+    .cd .lbl{font-size:12px; color:var(--muted); margin-top:2px}
+    .grid{
+      display:grid; gap:16px; margin-top:16px;
+      grid-template-columns: repeat(12, 1fr);
+    }
+    .card{
+      grid-column: span 12;
+      border:1px solid var(--line); border-radius:18px; padding:18px;
+      background: rgba(18,22,34,.72);
+    }
+    .card h2{margin:0 0 10px; font-size:22px}
+    .muted{color:var(--muted)}
+    .two{display:grid; gap:14px; grid-template-columns:1fr}
+    @media (min-width:820px){ .two{grid-template-columns:1fr 1fr} }
+    .photo{
+      width:100%; height:240px; border-radius:16px; border:1px solid var(--line);
+      background: #0f1320 center/cover no-repeat;
+    }
+    .btnrow{display:flex; flex-wrap:wrap; gap:10px; margin-top:12px}
+    .btn{
+      display:inline-flex; gap:10px; align-items:center;
+      padding:10px 12px; border-radius:12px; border:1px solid var(--line);
+      text-decoration:none; background: rgba(11,13,18,.35);
+    }
+    .btn:hover{border-color:rgba(255,255,255,.22)}
+    .badge{
+      display:inline-block; padding:6px 10px; border-radius:999px;
+      border:1px solid var(--line); background: rgba(11,13,18,.35); color:var(--muted);
+      font-size:12px;
+    }
+    ul{margin:10px 0 0; padding-left:18px}
+    li{margin:6px 0}
+    .divider{height:1px; background:var(--line); margin:14px 0}
+    .footer{padding:18px 0 30px; text-align:center; color:var(--muted); font-size:13px}
+    .logo{
+      display:inline-flex; align-items:center; gap:10px;
+    }
+    .amazon{
+      width:22px; height:22px; border-radius:6px; background:#111; border:1px solid var(--line);
+      display:inline-grid; place-items:center; font-weight:800;
+    }
+    iframe{width:100%; border:1px solid var(--line); border-radius:16px; background:#fff}
+    .small{font-size:13px}
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-top">
+        <div class="names">
+          <h1>Alberto & Sofía</h1>
+          <p>Nos casamos y nos encantaría compartir este día contigo.</p>
+          <div class="pill" style="margin-top:12px">
+            <span>📅</span>
+            <span><strong id="dateText">Sábado 27 de junio de 2026</strong> · <span class="muted" id="timeText">Hora por confirmar</span></span>
+          </div>
+        </div>
+
+        <div>
+          <div class="badge">Cuenta regresiva</div>
+          <div class="countdown" style="margin-top:10px">
+            <div class="cd"><div class="num" id="d">--</div><div class="lbl">Días</div></div>
+            <div class="cd"><div class="num" id="h">--</div><div class="lbl">Horas</div></div>
+            <div class="cd"><div class="num" id="m">--</div><div class="lbl">Min</div></div>
+            <div class="cd"><div class="num" id="s">--</div><div class="lbl">Seg</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fotos de ustedes -->
+      <div class="two">
+        <div>
+          <div class="badge">Nosotros</div>
+          <div class="photo" style="margin-top:10px; background-image:url('img/nosotros-1.jpg');"></div>
+          <p class="muted small" style="margin:10px 0 0;">Cambia esta foto: <code>img/nosotros-1.jpg</code></p>
+        </div>
+        <div>
+          <div class="badge">Nosotros</div>
+          <div class="photo" style="margin-top:10px; background-image:url('img/nosotros-2.jpg');"></div>
+          <p class="muted small" style="margin:10px 0 0;">Cambia esta foto: <code>img/nosotros-2.jpg</code></p>
+        </div>
+      </div>
+    </section>
+
+    <div class="grid">
+
+      <!-- CEREMONIA -->
+      <section class="card">
+        <h2>⛪ Ceremonia</h2>
+        <p class="muted">Aquí va el nombre del templo y la hora de la ceremonia.</p>
+
+        <div class="two">
+          <div>
+            <div class="photo" style="background-image:url('img/templo.jpg');"></div>
+            <p class="muted small" style="margin:10px 0 0;">Foto del templo: <code>img/templo.jpg</code></p>
+          </div>
+          <div>
+            <p><strong>Templo:</strong> <span id="templeName">[Nombre del templo]</span></p>
+            <p><strong>Dirección:</strong> <span id="templeAddr">[Dirección del templo]</span></p>
+            <div class="btnrow">
+              <a class="btn" id="templeGoogle" href="#" target="_blank" rel="noopener">🗺️ Google Maps</a>
+              <a class="btn" id="templeApple" href="#" target="_blank" rel="noopener">🍎 Apple Maps</a>
+            </div>
+            <div class="divider"></div>
+            <p class="muted small">Tip: pon aquí una nota breve tipo “llega 15 min antes” o “habrá estacionamiento en…”</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- FIESTA -->
+      <section class="card">
+        <h2>🎉 Fiesta</h2>
+        <p class="muted">Lugar de la recepción, hora de inicio y cualquier detalle importante.</p>
+
+        <div class="two">
+          <div>
+            <div class="photo" style="background-image:url('img/salon.jpg');"></div>
+            <p class="muted small" style="margin:10px 0 0;">Foto del salón: <code>img/salon.jpg</code></p>
+          </div>
+          <div>
+            <p><strong>Lugar:</strong> <span id="partyName">[Nombre del lugar]</span></p>
+            <p><strong>Dirección:</strong> <span id="partyAddr">[Dirección del lugar]</span></p>
+            <div class="btnrow">
+              <a class="btn" id="partyGoogle" href="#" target="_blank" rel="noopener">🗺️ Google Maps</a>
+              <a class="btn" id="partyApple" href="#" target="_blank" rel="noopener">🍎 Apple Maps</a>
+            </div>
+
+            <div class="divider"></div>
+
+            <p><strong>Cómo llegar</strong></p>
+            <ul class="muted">
+              <li>Referencia 1 (ej. “entrada principal por…”)</li>
+              <li>Referencia 2 (ej. “estacionamiento en…”)</li>
+              <li>Si habrá transporte/itinerario, ponlo aquí.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- REGALOS -->
+      <section class="card">
+        <h2>🎁 Regalos</h2>
+        <p class="muted">
+          Tu presencia es lo más importante. Si deseas regalarnos algo, nos ayudaría mucho usar la lista de Amazon
+          para evitar regalos repetidos.
+        </p>
+
+        <div class="btnrow">
+          <a class="btn" href="https://www.amazon.com.mx/" target="_blank" rel="noopener">
+            <span class="logo"><span class="amazon">a</span> Lista de regalos (Amazon)</span>
+          </a>
+        </div>
+
+        <ul class="muted">
+          <li>También puedes llevar regalo en físico si lo prefieres.</li>
+          <li>Si prefieres apoyar en efectivo o por transferencia, <strong>por favor pídenos los datos bancarios por mensaje</strong>.</li>
+        </ul>
+      </section>
+
+      <!-- CÓDIGO DE VESTIMENTA -->
+      <section class="card">
+        <h2>👔 Código de vestimenta: Formal</h2>
+
+        <div class="two">
+          <div>
+            <p><strong>Mujeres</strong></p>
+            <ul class="muted">
+              <li>Vestido largo</li>
+              <li>Estampado discreto</li>
+              <li><strong>No</strong> vestido blanco, beige o colores similares</li>
+              <li>Evitar colores claros</li>
+            </ul>
+          </div>
+          <div>
+            <p><strong>Hombres</strong></p>
+            <ul class="muted">
+              <li>Traje</li>
+              <li>Zapatos formales</li>
+              <li>Corbata sencilla</li>
+              <li>Camisa formal de manga larga (evitar colores claros)</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- RSVP -->
+      <section class="card">
+        <h2>✅ Confirmación de asistencia (RSVP)</h2>
+        <p class="muted">
+          Esta sección es clave: necesitamos tu registro para organizar mesas y lugares.
+          <strong>Por invitación se considera 1 pase + 1 acompañante máximo</strong>.
+          Por favor escribe tu nombre completo y, si aplica, el nombre de tu acompañante.
+        </p>
+
+        <div class="divider"></div>
+
+        <p><strong>Opción 1 (recomendada): Formulario</strong></p>
+        <p class="muted small">
+          Inserta aquí tu Google Form (Embed). Debajo te dejo un ejemplo.
+        </p>
+
+        <!-- Reemplaza el src por el "Embed" de tu Google Form -->
+        <iframe
+          id="rsvpForm"
+          src="https://docs.google.com/forms/d/e/EXAMPLE/viewform?embedded=true"
+          height="780"
+          loading="lazy">
+        </iframe>
+
+        <div class="divider"></div>
+
+        <p><strong>¿Se te complica o tienes un caso especial (niños)?</strong></p>
+        <p class="muted">
+          Recomendación general: preferimos que no asistan niños. Si tienes una situación particular, por favor contáctame y lo revisamos.
+        </p>
+
+        <!-- Cambia al número real en formato internacional -->
+        <div class="btnrow">
+          <a class="btn" id="whats" href="https://wa.me/5213312345678?text=Hola%20Alberto,%20tengo%20una%20duda%20sobre%20la%20invitaci%C3%B3n%20y%20RSVP" target="_blank" rel="noopener">
+            💬 WhatsApp (Alberto)
+          </a>
+          <a class="btn" href="tel:+523312345678">📞 Llamar</a>
+        </div>
+
+        <p class="muted small" style="margin-top:10px">
+          * Importante: evita poner datos sensibles (como cuenta bancaria) en público.
+        </p>
+      </section>
+
+    </div>
+
+    <div class="footer">
+      Hecho con ❤️ para nuestra boda · Alberto & Sofía
+    </div>
+  </div>
+
+  <script>
+    // ======================
+    // CONFIGURACIÓN BÁSICA
+    // ======================
+
+    // Fecha/hora del evento (zona local). Ajusta hora/minuto.
+    // Ejemplo: 2026-06-27T17:00:00 (5:00 PM)
+    const weddingDate = new Date("2026-06-27T17:00:00");
+
+    // Links: pega URLs reales de Google/Apple Maps
+    const links = {
+      templeGoogle: "https://maps.google.com/?q=Templo+Ejemplo",
+      templeApple:  "https://maps.apple.com/?q=Templo%20Ejemplo",
+      partyGoogle:  "https://maps.google.com/?q=Salon+Ejemplo",
+      partyApple:   "https://maps.apple.com/?q=Salon%20Ejemplo",
+    };
+
+    // Textos de lugares
+    document.getElementById("templeName").textContent = "Templo: [por definir]";
+    document.getElementById("templeAddr").textContent = "[Dirección por definir]";
+    document.getElementById("partyName").textContent  = "Recepción: [por definir]";
+    document.getElementById("partyAddr").textContent  = "[Dirección por definir]";
+
+    // Asignar links
+    document.getElementById("templeGoogle").href = links.templeGoogle;
+    document.getElementById("templeApple").href  = links.templeApple;
+    document.getElementById("partyGoogle").href  = links.partyGoogle;
+    document.getElementById("partyApple").href   = links.partyApple;
+
+    // ======================
+    // COUNTDOWN
+    // ======================
+    const elD = document.getElementById("d");
+    const elH = document.getElementById("h");
+    const elM = document.getElementById("m");
+    const elS = document.getElementById("s");
+
+    function pad(n){ return String(n).padStart(2,"0"); }
+
+    function tick(){
+      const now = new Date();
+      let diff = weddingDate - now;
+
+      if(diff <= 0){
+        elD.textContent = "00";
+        elH.textContent = "00";
+        elM.textContent = "00";
+        elS.textContent = "00";
+        return;
+      }
+
+      const totalSeconds = Math.floor(diff/1000);
+      const days = Math.floor(totalSeconds / 86400);
+      const hours = Math.floor((totalSeconds % 86400) / 3600);
+      const mins = Math.floor((totalSeconds % 3600) / 60);
+      const secs = totalSeconds % 60;
+
+      elD.textContent = String(days);
+      elH.textContent = pad(hours);
+      elM.textContent = pad(mins);
+      elS.textContent = pad(secs);
+    }
+
+    tick();
+    setInterval(tick, 1000);
+  </script>
+</body>
+</html>
