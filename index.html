@@ -213,11 +213,7 @@
       border-bottom:1px solid rgba(255,255,255,.08);
     }
     .media.templo{background-image:url("img/templo.jpg")}
-    .media.salon{background-image:url("img/salon.jpg")}
-    .media.g1{background-image:url("img/nosotros-1.jpg")}
-    .media.g2{background-image:url("img/nosotros-2.jpg")}
-    .media.g3{background-image:url("img/galeria-3.jpg")}
-    .media.g4{background-image:url("img/galeria-4.jpg")}
+    .media.salon{background-image:url("img/terraza.jpg")}
 
     /* Buttons */
     .btnrow{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
@@ -275,6 +271,47 @@
       background:#fff;
     }
 
+    /* Slider Momentos */
+    .slider{ position:relative; overflow:hidden; border-radius: var(--radius); }
+    .slider-track{
+      display:flex; width:100%;
+      overflow:hidden;
+      scroll-snap-type:x mandatory;
+      scroll-behavior:smooth;
+    }
+    .slide{
+      flex: 0 0 100%;
+      height: 420px;
+      background: #0f1118 center/cover no-repeat;
+      scroll-snap-align:start;
+    }
+    @media (max-width:600px){ .slide{height:300px} }
+
+    .slider-ui{
+      position:absolute; left:0; right:0; bottom:14px;
+      display:flex; align-items:center; justify-content:center; gap:12px;
+      pointer-events:none;
+    }
+    .sbtn{
+      pointer-events:auto;
+      width:42px; height:42px; border-radius:14px;
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(7,8,11,.55);
+      color: var(--text);
+      font-size:22px; line-height:0;
+      cursor:pointer;
+      backdrop-filter: blur(8px);
+    }
+    .sbtn:hover{ border-color: rgba(214,179,106,.55); }
+    .dots{ display:flex; gap:8px; pointer-events:auto; }
+    .dot{
+      width:9px; height:9px; border-radius:999px;
+      border:1px solid rgba(255,255,255,.25);
+      background: rgba(255,255,255,.12);
+      cursor:pointer;
+    }
+    .dot.active{ background: rgba(214,179,106,.75); border-color: rgba(214,179,106,.9); }
+
     /* Footer */
     .footer{
       margin-top:28px;
@@ -284,6 +321,7 @@
       text-align:center;
       font-size:13px;
     }
+    code{color:rgba(242,221,170,.9)}
   </style>
 </head>
 
@@ -296,6 +334,7 @@
       </div>
       <div class="navlinks">
         <a href="#fecha">Fecha</a>
+        <a href="#momentos">Momentos</a>
         <a href="#ceremonia">Ceremonia</a>
         <a href="#fiesta">Fiesta</a>
         <a href="#regalos">Regalos</a>
@@ -317,14 +356,14 @@
             <div class="kicker">✨ Invitación · <span class="accent">Formal</span></div>
             <h1 class="title">Nos casamos</h1>
             <p class="subtitle">
-              Nos haría muy felices compartir este día contigo.
-              Gracias por acompañarnos a celebrar el inicio de esta nueva etapa.
+              Lo esencial es invisible a los ojos; se ve bien solo con el corazón.
+              Gracias por acompañarnos a celebrar este día.
             </p>
 
             <div class="hero-meta">
               <div class="meta-row">
                 <div class="pill">📅 <b id="dateText">Sábado 27 de junio de 2026</b></div>
-                <div class="pill">🕒 <b id="timeText">Hora por confirmar</b></div>
+                <div class="pill">🕒 <b id="timeText">Misa 5:00 PM · Fiesta 7:00 PM</b></div>
               </div>
 
               <div class="badge">Cuenta regresiva</div>
@@ -345,37 +384,41 @@
 
           <div class="pill" style="justify-content:space-between">
             <span>📍 Ciudad</span>
-            <b id="cityText">Ciudad Guzmán, Jalisco</b>
+            <b id="cityText">Cd. Guzmán, Jalisco</b>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- GALERÍA -->
-    <section class="section" style="margin-top:22px">
+    <!-- MOMENTOS (slider) -->
+    <section class="section" style="margin-top:22px" id="momentos">
       <h2>Momentos</h2>
       <p>Algunas fotos para ir calentando el corazón antes del gran día.</p>
-      <div class="grid">
-        <div class="card" style="grid-column:span 12">
-          <div class="two">
-            <div class="media g1"></div>
-            <div class="media g2"></div>
-          </div>
-          <div class="two">
-            <div class="media g3" style="min-height:220px"></div>
-            <div class="media g4" style="min-height:220px"></div>
-          </div>
+
+      <div class="slider card" style="margin-top:14px">
+        <div class="slider-track" id="momTrack">
+          <div class="slide" style="background-image:url('img/momento-1.png')"></div>
+          <div class="slide" style="background-image:url('img/momento-2.png')"></div>
+          <div class="slide" style="background-image:url('img/momento-3.png')"></div>
+          <div class="slide" style="background-image:url('img/momento-4.png')"></div>
+        </div>
+
+        <div class="slider-ui">
+          <button class="sbtn" id="prev" aria-label="Anterior">‹</button>
+          <div class="dots" id="dots" aria-label="Indicadores"></div>
+          <button class="sbtn" id="next" aria-label="Siguiente">›</button>
         </div>
       </div>
+
       <p style="margin-top:10px; color:var(--muted2); font-size:13px;">
-        Tip: usa <code>img/hero.jpg</code> como foto principal. Si no tienes aún, duplica una de ustedes y renómbrala.
+        Si tus collages son .jpg, cambia <code>.png</code> por <code>.jpg</code> en las rutas.
       </p>
     </section>
 
     <!-- CEREMONIA -->
     <section class="section" id="ceremonia">
       <h2>Ceremonia</h2>
-      <p>Te esperamos con tiempo para iniciar puntuales.</p>
+      <p>Misa <b>5:00 PM</b>. Te sugerimos llegar 15 minutos antes para iniciar puntuales.</p>
 
       <div class="grid">
         <div class="card">
@@ -383,14 +426,14 @@
           <div class="card-inner">
             <div class="badge">⛪ Templo</div>
             <div class="divider"></div>
-            <p><b id="templeName">[Nombre del templo]</b></p>
-            <p class="muted" id="templeAddr">[Dirección del templo]</p>
+
+            <p><b id="templeName">Templo del Sagrado Corazón de Jesús</b></p>
+            <p class="muted" id="templeAddr">C. Federico del Toro 263, Cd Guzmán Centro, 49000 Cdad. Guzmán, Jal.</p>
+
             <div class="btnrow">
               <a class="btn" id="templeGoogle" href="#" target="_blank" rel="noopener">🗺️ Google Maps</a>
               <a class="btn" id="templeApple" href="#" target="_blank" rel="noopener">🍎 Apple Maps</a>
             </div>
-            <div class="divider"></div>
-            <p class="muted">Sugerencia: llega 15 minutos antes.</p>
           </div>
         </div>
       </div>
@@ -399,25 +442,39 @@
     <!-- FIESTA -->
     <section class="section" id="fiesta">
       <h2>Fiesta</h2>
-      <p>Después de la ceremonia, celebramos juntos. ¡Prepárate para bailar!</p>
+      <p>Recepción desde las <b>7:00 PM</b> en la terraza. Pueden ir llegando.</p>
 
       <div class="grid">
         <div class="card">
           <div class="media salon"></div>
           <div class="card-inner">
-            <div class="badge">🎉 Recepción</div>
+            <div class="badge">🎉 Terraza</div>
             <div class="divider"></div>
-            <p><b id="partyName">[Nombre del lugar]</b></p>
-            <p class="muted" id="partyAddr">[Dirección del lugar]</p>
+
+            <p><b id="partyName">Quinta de Leos</b></p>
+            <p class="muted" id="partyAddr">Cd. Guzmán, Jalisco</p>
+
             <div class="btnrow">
               <a class="btn" id="partyGoogle" href="#" target="_blank" rel="noopener">🗺️ Google Maps</a>
               <a class="btn" id="partyApple" href="#" target="_blank" rel="noopener">🍎 Apple Maps</a>
             </div>
+
+            <div class="divider"></div>
+            <div class="badge">🧭 Mapa</div>
+            <div style="margin-top:10px">
+              <iframe
+                src="https://www.google.com/maps?output=embed&q=Quinta%20de%20Leos&ll=19.7295873437685,-103.46799473101152&z=16"
+                height="360"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+            </div>
+
             <div class="divider"></div>
             <p><b>Cómo llegar</b></p>
             <ul>
-              <li>Referencia 1 (entrada / estacionamiento)</li>
-              <li>Referencia 2 (punto fácil para ubicar)</li>
+              <li>Te recomendamos usar el botón de Google Maps para ruta directa.</li>
+              <li>Si vienes con tiempo, considera tráfico y estacionamiento.</li>
             </ul>
           </div>
         </div>
@@ -434,15 +491,18 @@
           <div class="card-inner">
             <div class="badge">🎁 Lista</div>
             <div class="divider"></div>
+
             <div class="btnrow">
               <a class="btn gold" id="amazonList" href="https://www.amazon.com.mx/" target="_blank" rel="noopener">
                 🛒 Ver lista en Amazon
               </a>
             </div>
+
             <div class="divider"></div>
             <ul>
               <li>También puedes llevar regalo en físico si lo prefieres.</li>
-              <li>Si prefieres efectivo o transferencia, por favor pide los datos bancarios por mensaje (no los publicamos por seguridad).</li>
+              <li>Para evitar regalos repetidos, de preferencia usa la lista de Amazon.</li>
+              <li>Si prefieres efectivo o transferencia, por seguridad los datos bancarios se comparten por mensaje.</li>
             </ul>
           </div>
         </div>
@@ -466,7 +526,7 @@
                   <li>Vestido largo</li>
                   <li>Estampado discreto</li>
                   <li><b>No</b> vestido blanco, beige o colores similares</li>
-                  <li>Evitar colores claros</li>
+                  <li>Nada de colores claros</li>
                 </ul>
               </div>
               <div>
@@ -475,7 +535,7 @@
                   <li>Traje</li>
                   <li>Zapatos formales</li>
                   <li>Corbata sencilla</li>
-                  <li>Camisa formal de manga larga (evitar colores claros)</li>
+                  <li>Camisa formal de manga larga (no usar colores claros)</li>
                 </ul>
               </div>
             </div>
@@ -534,23 +594,27 @@
     // ======================
     // CONFIG (EDITA AQUÍ)
     // ======================
-    const weddingDate = new Date("2026-06-27T17:00:00"); // AJUSTA HORA
+    const weddingDate = new Date("2026-06-27T17:00:00"); // misa 5:00 PM
 
     const config = {
-      city: "Ciudad Guzmán, Jalisco",
-      timeText: "5:00 PM (por confirmar)",
+      city: "Cd. Guzmán, Jalisco",
+      timeText: "Misa 5:00 PM · Fiesta 7:00 PM (Terraza)",
 
-      templeName: "[Nombre del templo]",
-      templeAddr: "[Dirección del templo]",
-      partyName: "[Nombre del salón]",
-      partyAddr: "[Dirección del salón]",
+      templeName: "Templo del Sagrado Corazón de Jesús",
+      templeAddr: "C. Federico del Toro 263, Cd Guzmán Centro, 49000 Cdad. Guzmán, Jal.",
+
+      partyName: "Quinta de Leos (Terraza)",
+      partyAddr: "Cd. Guzmán, Jalisco",
 
       links: {
-        templeGoogle: "https://maps.google.com/?q=Templo+Ejemplo",
-        templeApple:  "https://maps.apple.com/?q=Templo%20Ejemplo",
-        partyGoogle:  "https://maps.google.com/?q=Salon+Ejemplo",
-        partyApple:   "https://maps.apple.com/?q=Salon%20Ejemplo",
+        templeGoogle: "https://www.google.com/maps?q=19.710205969598263,-103.46316570917355",
+        templeApple:  "https://maps.apple.com/?ll=19.710205969598263,-103.46316570917355&q=Templo",
+
+        partyGoogle:  "https://www.google.com/maps/place/Quinta+de+Leos/data=!4m2!3m1!1s0x0:0x59e13e014ba34b3?sa=X&ved=1t:2428&ictx=111",
+        partyApple:   "https://maps.apple.com/?ll=19.7295873437685,-103.46799473101152&q=Quinta%20de%20Leos",
+
         amazonList:   "https://www.amazon.com.mx/",
+
         rsvpFormOpen: "https://docs.google.com/forms/d/e/EXAMPLE/viewform",
         whatsapp:     "https://wa.me/5213312345678?text=Hola%20Alberto,%20tengo%20una%20duda%20sobre%20la%20invitaci%C3%B3n%20y%20RSVP"
       }
@@ -573,10 +637,6 @@
     document.getElementById("amazonList").href   = config.links.amazonList;
     document.getElementById("rsvpLink").href     = config.links.rsvpFormOpen;
     document.getElementById("whats").href        = config.links.whatsapp;
-
-    // Fecha en texto (opcional)
-    // Si quieres dejarla fija, edita el HTML directo.
-    // document.getElementById("dateText").textContent = "Sábado 27 de junio de 2026";
 
     // ======================
     // COUNTDOWN
@@ -610,6 +670,62 @@
     }
     tick();
     setInterval(tick, 1000);
+
+    // ======================
+    // Slider Momentos (auto)
+    // ======================
+    const track = document.getElementById("momTrack");
+    const dotsEl = document.getElementById("dots");
+    const slides = track ? Array.from(track.children) : [];
+    let idx = 0;
+    let timer = null;
+
+    function go(i){
+      if(!track || slides.length===0) return;
+      idx = (i + slides.length) % slides.length;
+      track.scrollTo({ left: idx * track.clientWidth, behavior: "smooth" });
+      updateDots();
+    }
+    function updateDots(){
+      if(!dotsEl) return;
+      dotsEl.querySelectorAll(".dot").forEach((d, j)=> d.classList.toggle("active", j===idx));
+    }
+    function buildDots(){
+      if(!dotsEl) return;
+      dotsEl.innerHTML = "";
+      slides.forEach((_, j)=>{
+        const b = document.createElement("button");
+        b.className = "dot" + (j===0 ? " active" : "");
+        b.type = "button";
+        b.addEventListener("click", ()=>{ stopAuto(); go(j); startAuto(); });
+        dotsEl.appendChild(b);
+      });
+    }
+    function startAuto(){
+      stopAuto();
+      timer = setInterval(()=> go(idx+1), 4500);
+    }
+    function stopAuto(){
+      if(timer) clearInterval(timer);
+      timer = null;
+    }
+
+    if(track){
+      buildDots();
+      startAuto();
+      window.addEventListener("resize", ()=> go(idx));
+
+      const prev = document.getElementById("prev");
+      const next = document.getElementById("next");
+      if(prev) prev.addEventListener("click", ()=>{ stopAuto(); go(idx-1); startAuto(); });
+      if(next) next.addEventListener("click", ()=>{ stopAuto(); go(idx+1); startAuto(); });
+
+      track.addEventListener("scroll", ()=>{
+        const w = track.clientWidth || 1;
+        const newIdx = Math.round(track.scrollLeft / w);
+        if(newIdx !== idx){ idx = newIdx; updateDots(); }
+      }, { passive:true });
+    }
   </script>
 </body>
 </html>
