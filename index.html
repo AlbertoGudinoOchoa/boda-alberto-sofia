@@ -93,18 +93,18 @@
       .hero-grid{grid-template-columns:1fr; min-height:auto}
     }
 
-    /* ✅ FOTO PRINCIPAL: usa el collage 1 tal cual */
+    /* FOTO PRINCIPAL: anillo.jpg */
     .hero-photo{
       position:relative;
       min-height:520px;
       background:
         linear-gradient(90deg, rgba(7,8,11,.10), rgba(7,8,11,.80)),
-        url("img/collage_1_playa_sofia_alberto.png") center/cover no-repeat;
+        url("img/anillo.png") center/cover no-repeat;
     }
     @media (max-width:920px){
       .hero-photo{min-height:420px; background:
         linear-gradient(180deg, rgba(7,8,11,.15), rgba(7,8,11,.88)),
-        url("img/collage_1_playa_sofia_alberto.png") center/cover no-repeat;}
+        url("img/anillo.png") center/cover no-repeat;}
     }
     .hero-photo::after{
       content:"";
@@ -213,9 +213,18 @@
       background:#0f1118 center/cover no-repeat;
       border-bottom:1px solid rgba(255,255,255,.08);
     }
-    /* ✅ NOMBRES EXACTOS */
-    .media.templo{background-image:url("img/Templo.png")}
-    .media.salon{background-image:url("img/Terraza_fiesta.png")}
+
+    /* ✅ IMÁGENES EXACTAS (ajusta si quieres contain vs cover) */
+    .media.templo{
+      background-image:url("img/Templo.png");
+      background-size:cover;
+      background-position:center;
+    }
+    .media.salon{
+      background-image:url("img/Terraza_fiesta.png");
+      background-size:cover;
+      background-position:center 35%;
+    }
 
     /* Buttons */
     .btnrow{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
@@ -276,11 +285,17 @@
     /* Slider Momentos */
     .slider{ position:relative; overflow:hidden; border-radius: var(--radius); }
     .slider-track{
-      display:flex; width:100%;
-      overflow:hidden;
+      display:flex;
+      width:100%;
+      overflow-x:auto;          /* ✅ permite scroll manual */
+      overflow-y:hidden;
       scroll-snap-type:x mandatory;
       scroll-behavior:smooth;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width:none;     /* Firefox */
     }
+    .slider-track::-webkit-scrollbar{ display:none; } /* Chrome/Safari */
+
     .slide{
       flex: 0 0 100%;
       height: 420px;
@@ -398,8 +413,7 @@
       <p>Algunas fotos para ir calentando el corazón antes del gran día.</p>
 
       <div class="slider card" style="margin-top:14px">
-        <div class="slider-track" id="momTrack">
-          <!-- ✅ NOMBRES EXACTOS -->
+        <div class="slider-track" id="momTrack" aria-label="Galería de momentos">
           <div class="slide" style="background-image:url('img/collage_1_playa_sofia_alberto.png')"></div>
           <div class="slide" style="background-image:url('img/collage_2_bosque_sofia_alberto.png')"></div>
           <div class="slide" style="background-image:url('img/collage_3_luces_sofia_alberto.png')"></div>
@@ -412,6 +426,10 @@
           <button class="sbtn" id="next" aria-label="Siguiente">›</button>
         </div>
       </div>
+
+      <p style="margin-top:10px; color:var(--muted2); font-size:13px;">
+        Si no cambian las fotos en GitHub Pages, haz hard refresh: <code>Ctrl+Shift+R</code> (o <code>Cmd+Shift+R</code> en Mac).
+      </p>
     </section>
 
     <!-- CEREMONIA -->
@@ -593,7 +611,9 @@
     // ======================
     // CONFIG (EDITA AQUÍ)
     // ======================
-    const weddingDate = new Date("2026-06-27T17:00:00"); // misa 5:00 PM
+    // Nota: si quieres hora local de México sin broncas de UTC, usa:
+    // new Date(2026, 5, 27, 17, 0, 0)  // mes 5 = junio
+    const weddingDate = new Date(2026, 5, 27, 17, 0, 0); // 27 Jun 2026 5:00 PM
 
     const config = {
       city: "Cd. Guzmán, Jalisco",
@@ -671,7 +691,7 @@
     setInterval(tick, 1000);
 
     // ======================
-    // Slider Momentos (auto)
+    // Slider Momentos (auto + manual)
     // ======================
     const track = document.getElementById("momTrack");
     const dotsEl = document.getElementById("dots");
@@ -685,10 +705,12 @@
       track.scrollTo({ left: idx * track.clientWidth, behavior: "smooth" });
       updateDots();
     }
+
     function updateDots(){
       if(!dotsEl) return;
       dotsEl.querySelectorAll(".dot").forEach((d, j)=> d.classList.toggle("active", j===idx));
     }
+
     function buildDots(){
       if(!dotsEl) return;
       dotsEl.innerHTML = "";
@@ -700,9 +722,10 @@
         dotsEl.appendChild(b);
       });
     }
+
     function startAuto(){
       stopAuto();
-      timer = setInterval(()=> go(idx+1), 4500);
+      timer = setInterval(()=> go(idx+1), 5000); // ✅ cada 5 segundos
     }
     function stopAuto(){
       if(timer) clearInterval(timer);
@@ -717,13 +740,22 @@
       const prev = document.getElementById("prev");
       const next = document.getElementById("next");
       if(prev) prev.addEventListener("click", ()=>{ stopAuto(); go(idx-1); startAuto(); });
-      if(next) next.addEvent tListener("click", ()=>{ stopAuto(); go(idx+1); startAuto(); });
+      if(next) next.addEventListener("click", ()=>{ stopAuto(); go(idx+1); startAuto(); });
 
+      // ✅ si el usuario hace scroll manual, actualiza el índice/dots
       track.addEventListener("scroll", ()=>{
         const w = track.clientWidth || 1;
         const newIdx = Math.round(track.scrollLeft / w);
         if(newIdx !== idx){ idx = newIdx; updateDots(); }
       }, { passive:true });
+
+      // ✅ pausa auto mientras el usuario interactúa (touch/mouse), y reanuda
+      ["pointerdown","touchstart","mousedown","wheel"].forEach(evt=>{
+        track.addEventListener(evt, ()=> stopAuto(), { passive:true });
+      });
+      ["pointerup","touchend","mouseup","mouseleave"].forEach(evt=>{
+        track.addEventListener(evt, ()=> startAuto(), { passive:true });
+      });
     }
   </script>
 </body>
