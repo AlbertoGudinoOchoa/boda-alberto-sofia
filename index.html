@@ -6,23 +6,26 @@
   <title>Boda Alberto & Sofía</title>
   <meta name="description" content="Invitación de boda - Alberto & Sofía" />
 
-  <!-- Tipografías -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
   <style>
     :root{
-      --bg: #07080b;
-      --card: rgba(255,255,255,.06);
-      --card2: rgba(255,255,255,.085);
-      --line: rgba(255,255,255,.14);
-      --text: rgba(255,255,255,.94);
-      --muted: rgba(255,255,255,.68);
-      --muted2: rgba(255,255,255,.55);
-      --gold: #d6b36a;
-      --gold2:#f2ddaa;
-      --shadow: 0 20px 60px rgba(0,0,0,.55);
+      --bg: #ffffff;
+      --ink: #17171a;
+      --muted: rgba(23,23,26,.72);
+      --muted2: rgba(23,23,26,.55);
+      --beige: #d9c9ad;
+      --beige2:#efe6d7;
+      --line: rgba(23,23,26,.10);
+      --card: rgba(255,255,255,.88);
+      --shadow: 0 18px 60px rgba(12,10,8,.10);
       --radius: 22px;
     }
 
@@ -30,39 +33,56 @@
     html{scroll-behavior:smooth}
     body{
       margin:0;
-      color:var(--text);
+      color:var(--ink);
       font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background:
-        radial-gradient(900px 500px at 80% -10%, rgba(214,179,106,.18), transparent 55%),
-        radial-gradient(700px 450px at 10% 0%, rgba(255,255,255,.10), transparent 60%),
-        radial-gradient(900px 550px at 20% 110%, rgba(214,179,106,.12), transparent 60%),
-        var(--bg);
+      background: var(--bg);
       overflow-x:hidden;
     }
 
+    /* Fondo con “grabados” florales beige (sin imágenes externas) */
+    body::before{
+      content:"";
+      position:fixed; inset:0;
+      pointer-events:none;
+      background:
+        radial-gradient(700px 420px at 8% 8%, rgba(217,201,173,.26), transparent 62%),
+        radial-gradient(780px 520px at 92% 12%, rgba(217,201,173,.22), transparent 62%),
+        radial-gradient(820px 560px at 18% 95%, rgba(217,201,173,.20), transparent 64%),
+        radial-gradient(760px 520px at 92% 92%, rgba(217,201,173,.18), transparent 64%),
+        repeating-radial-gradient(circle at 12% 18%,
+          rgba(217,201,173,.14) 0 2px, transparent 2px 12px),
+        repeating-radial-gradient(circle at 88% 82%,
+          rgba(217,201,173,.12) 0 2px, transparent 2px 14px);
+      opacity:.55;
+      filter: blur(.2px);
+      z-index:-1;
+    }
+
     /* Layout */
-    .wrap{max-width:1100px; margin:0 auto; padding:26px 18px 70px;}
-    .nav{
+    .wrap{max-width:1100px; margin:0 auto; padding:22px 16px 70px;}
+
+    /* Nav */
+    .navx{
       position:sticky; top:0; z-index:50;
       backdrop-filter: blur(10px);
-      background: rgba(7,8,11,.55);
-      border-bottom:1px solid rgba(255,255,255,.06);
+      background: rgba(255,255,255,.78);
+      border-bottom:1px solid rgba(23,23,26,.08);
     }
     .nav-inner{
-      max-width:1100px; margin:0 auto; padding:14px 18px;
+      max-width:1100px; margin:0 auto; padding:14px 16px;
       display:flex; align-items:center; justify-content:space-between; gap:12px;
     }
-    .brand{
-      display:flex; align-items:baseline; gap:10px; white-space:nowrap;
-    }
+    .brand{display:flex; align-items:baseline; gap:10px; white-space:nowrap;}
     .brand b{
       font-family:"Playfair Display", serif;
-      letter-spacing:.5px;
+      letter-spacing:.4px;
       font-weight:700;
       font-size:18px;
+      color:var(--ink);
     }
-    .brand span{color:var(--muted); font-size:12px}
-    .nav a{
+    .brand span{color:var(--muted2); font-size:12px}
+    .navlinks{display:flex; gap:6px; flex-wrap:wrap; justify-content:flex-end}
+    .navlinks a{
       color:var(--muted);
       text-decoration:none;
       font-size:13px;
@@ -70,61 +90,68 @@
       border-radius:12px;
       border:1px solid transparent;
     }
-    .nav a:hover{color:var(--text); border-color:rgba(255,255,255,.10); background:rgba(255,255,255,.04)}
-    .navlinks{display:flex; gap:6px; flex-wrap:wrap; justify-content:flex-end}
+    .navlinks a:hover{
+      color:var(--ink);
+      border-color:rgba(23,23,26,.12);
+      background: rgba(239,230,215,.55);
+    }
 
     /* Hero */
     .hero{
-      margin-top:22px;
+      margin-top:18px;
       border-radius:28px;
       overflow:hidden;
-      border:1px solid rgba(255,255,255,.10);
+      border:1px solid rgba(23,23,26,.10);
       box-shadow: var(--shadow);
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      background: rgba(255,255,255,.85);
       position:relative;
     }
     .hero-grid{
       display:grid;
       grid-template-columns: 1.15fr .85fr;
-      gap:0;
       min-height:520px;
     }
     @media (max-width:920px){
       .hero-grid{grid-template-columns:1fr; min-height:auto}
     }
 
-    /* FOTO PRINCIPAL: anillo.jpg */
+    /* Foto principal */
     .hero-photo{
       position:relative;
       min-height:520px;
       background:
-        linear-gradient(90deg, rgba(7,8,11,.10), rgba(7,8,11,.80)),
-        url("img/anillo.png") center/cover no-repeat;
+        linear-gradient(90deg, rgba(255,255,255,.15), rgba(255,255,255,.80)),
+        url("img/anillo.jpg") center/cover no-repeat;
     }
     @media (max-width:920px){
-      .hero-photo{min-height:420px; background:
-        linear-gradient(180deg, rgba(7,8,11,.15), rgba(7,8,11,.88)),
-        url("img/anillo.png") center/cover no-repeat;}
+      .hero-photo{
+        min-height:420px;
+        background:
+          linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.86)),
+          url("img/anillo.jpg") center/cover no-repeat;
+      }
     }
     .hero-photo::after{
       content:"";
       position:absolute; inset:0;
-      background: radial-gradient(800px 600px at 20% 20%, rgba(214,179,106,.25), transparent 60%);
+      background:
+        radial-gradient(700px 520px at 20% 20%, rgba(217,201,173,.28), transparent 60%),
+        radial-gradient(700px 520px at 90% 85%, rgba(217,201,173,.18), transparent 62%);
       pointer-events:none;
     }
 
     .hero-content{
       padding:34px 30px;
-      display:flex; flex-direction:column; justify-content:space-between; gap:22px;
-      background: linear-gradient(180deg, rgba(7,8,11,.18), rgba(7,8,11,.42));
+      display:flex; flex-direction:column; justify-content:space-between; gap:18px;
+      background: linear-gradient(180deg, rgba(255,255,255,.72), rgba(255,255,255,.92));
     }
     .kicker{
       display:inline-flex; align-items:center; gap:10px;
       padding:8px 12px;
       border-radius:999px;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.04);
-      color:var(--muted);
+      border:1px solid rgba(23,23,26,.12);
+      background: rgba(239,230,215,.50);
+      color: rgba(23,23,26,.72);
       font-size:12px;
       width:fit-content;
     }
@@ -132,52 +159,49 @@
       margin:10px 0 0;
       font-family:"Playfair Display", serif;
       font-weight:700;
-      letter-spacing:.3px;
-      font-size:52px;
+      letter-spacing:.2px;
+      font-size:54px;
       line-height:1.02;
+      color:var(--ink);
     }
     @media (max-width:520px){ .title{font-size:40px} }
-    .subtitle{margin:10px 0 0; color:var(--muted); font-size:15px; line-height:1.6}
+    .subtitle{margin:10px 0 0; color:var(--muted); font-size:15px; line-height:1.7}
 
-    .hero-meta{
-      display:grid; gap:12px;
-      grid-template-columns:1fr;
-    }
-    .meta-row{
-      display:flex; gap:10px; flex-wrap:wrap;
-      align-items:center;
-    }
+    .meta-row{display:flex; gap:10px; flex-wrap:wrap; align-items:center;}
     .pill{
       display:inline-flex; align-items:center; gap:10px;
       padding:10px 12px;
       border-radius:14px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
+      border:1px solid rgba(23,23,26,.12);
+      background: rgba(255,255,255,.72);
       color:var(--muted);
       font-size:13px;
     }
-    .pill b{color:var(--text); font-weight:600}
-    .accent{color:var(--gold2)}
+    .pill b{color:var(--ink); font-weight:600}
+    .accent{color:#9a7b48}
 
     /* Countdown */
-    .count{
-      display:grid;
-      grid-template-columns:repeat(4, minmax(0, 1fr));
-      gap:10px;
+    .badgex{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid rgba(23,23,26,.12);
+      background: rgba(239,230,215,.58);
+      color: rgba(23,23,26,.65);
+      font-size:12px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      width:fit-content;
     }
+    .count{display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:10px;}
     .cd{
       border-radius:18px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
+      border:1px solid rgba(23,23,26,.12);
+      background: rgba(255,255,255,.78);
       padding:14px 12px;
       text-align:center;
     }
-    .cd .n{
-      font-size:24px;
-      font-weight:700;
-      color:var(--text);
-      letter-spacing:.5px;
-    }
+    .cd .n{font-size:24px; font-weight:800; color:var(--ink); letter-spacing:.5px;}
     .cd .l{font-size:11px; color:var(--muted2); margin-top:4px; letter-spacing:.15em; text-transform:uppercase}
 
     /* Sections */
@@ -185,125 +209,89 @@
     .section h2{
       margin:0 0 10px;
       font-family:"Playfair Display", serif;
-      font-weight:600;
+      font-weight:650;
       letter-spacing:.2px;
-      font-size:26px;
+      font-size:28px;
+      color:var(--ink);
     }
-    .section p{margin:0; color:var(--muted); line-height:1.7}
+    .section p{margin:0; color:var(--muted); line-height:1.75}
 
-    .grid{
-      margin-top:14px;
-      display:grid; gap:14px;
-      grid-template-columns:repeat(12, 1fr);
-    }
-    .card{
+    .grid{margin-top:14px; display:grid; gap:14px; grid-template-columns:repeat(12, 1fr);}
+    .cardx{
       grid-column: span 12;
       border-radius: var(--radius);
-      border:1px solid rgba(255,255,255,.11);
-      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.045));
-      box-shadow: 0 18px 55px rgba(0,0,0,.35);
+      border:1px solid rgba(23,23,26,.10);
+      background: rgba(255,255,255,.86);
+      box-shadow: 0 14px 45px rgba(12,10,8,.09);
       overflow:hidden;
     }
     .card-inner{padding:18px}
-    .two{display:grid; gap:14px; grid-template-columns:1fr}
-    @media (min-width:900px){ .two{grid-template-columns:1fr 1fr} }
+    .divider{height:1px; background: rgba(23,23,26,.10); margin:14px 0}
 
     .media{
       min-height:260px;
-      background:#0f1118 center/cover no-repeat;
-      border-bottom:1px solid rgba(255,255,255,.08);
+      background:#f6f2ea center/cover no-repeat;
+      border-bottom:1px solid rgba(23,23,26,.08);
     }
-
-    /* ✅ IMÁGENES EXACTAS (ajusta si quieres contain vs cover) */
-    .media.templo{
-      background-image:url("img/Templo.png");
-      background-size:cover;
-      background-position:center;
-    }
-    .media.salon{
-      background-image:url("img/Terraza_fiesta.png");
-      background-size:cover;
-      background-position:center 35%;
-    }
+    .media.templo{background-image:url("img/Templo.png")}
 
     /* Buttons */
     .btnrow{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
-    .btn{
+    .btnx{
       display:inline-flex; align-items:center; gap:10px;
       padding:11px 14px;
       border-radius:14px;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.05);
-      color:var(--text);
+      border:1px solid rgba(23,23,26,.14);
+      background: rgba(255,255,255,.70);
+      color:var(--ink);
       text-decoration:none;
       font-size:13px;
       transition: transform .15s ease, background .15s ease, border-color .15s ease;
       will-change: transform;
     }
-    .btn:hover{
+    .btnx:hover{
       transform: translateY(-1px);
-      background: rgba(255,255,255,.08);
-      border-color: rgba(214,179,106,.35);
+      background: rgba(239,230,215,.65);
+      border-color: rgba(154,123,72,.45);
+      color: var(--ink);
     }
-    .btn.gold{
-      background: linear-gradient(180deg, rgba(214,179,106,.28), rgba(214,179,106,.16));
-      border-color: rgba(214,179,106,.42);
+    .btnx.gold{
+      background: linear-gradient(180deg, rgba(217,201,173,.65), rgba(239,230,215,.55));
+      border-color: rgba(154,123,72,.30);
     }
-    .btn.gold:hover{border-color: rgba(214,179,106,.65)}
-    .divider{height:1px; background: rgba(255,255,255,.10); margin:14px 0}
+    .btnx.gold:hover{border-color: rgba(154,123,72,.55)}
 
-    .badge{
-      display:inline-flex; align-items:center; gap:10px;
-      padding:7px 10px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
-      color:var(--muted2);
-      font-size:12px;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      width:fit-content;
-    }
-
-    /* Dress code columns */
-    .cols{
-      display:grid; gap:14px;
-      grid-template-columns:1fr;
-    }
-    @media (min-width:900px){ .cols{grid-template-columns:1fr 1fr} }
-    ul{margin:10px 0 0; padding-left:18px; color:var(--muted); line-height:1.75}
+    ul{margin:10px 0 0; padding-left:18px; color:var(--muted); line-height:1.8}
     li{margin:6px 0}
 
     /* RSVP */
     iframe{
       width:100%;
-      border:1px solid rgba(255,255,255,.14);
+      border:1px solid rgba(23,23,26,.14);
       border-radius:18px;
       background:#fff;
     }
 
-    /* Slider Momentos */
+    /* Momentos slider */
     .slider{ position:relative; overflow:hidden; border-radius: var(--radius); }
     .slider-track{
       display:flex;
       width:100%;
-      overflow-x:auto;          /* ✅ permite scroll manual */
+      overflow-x:auto;
       overflow-y:hidden;
       scroll-snap-type:x mandatory;
       scroll-behavior:smooth;
       -webkit-overflow-scrolling: touch;
-      scrollbar-width:none;     /* Firefox */
+      scrollbar-width:none;
     }
-    .slider-track::-webkit-scrollbar{ display:none; } /* Chrome/Safari */
-
+    .slider-track::-webkit-scrollbar{display:none}
     .slide{
       flex: 0 0 100%;
       height: 420px;
-      background: #0f1118 center/cover no-repeat;
+      background: #f6f2ea center/cover no-repeat;
       scroll-snap-align:start;
     }
     @media (max-width:600px){ .slide{height:300px} }
-
     .slider-ui{
       position:absolute; left:0; right:0; bottom:14px;
       display:flex; align-items:center; justify-content:center; gap:12px;
@@ -312,38 +300,73 @@
     .sbtn{
       pointer-events:auto;
       width:42px; height:42px; border-radius:14px;
-      border:1px solid rgba(255,255,255,.18);
-      background: rgba(7,8,11,.55);
-      color: var(--text);
+      border:1px solid rgba(23,23,26,.16);
+      background: rgba(255,255,255,.80);
+      color: var(--ink);
       font-size:22px; line-height:0;
       cursor:pointer;
       backdrop-filter: blur(8px);
     }
-    .sbtn:hover{ border-color: rgba(214,179,106,.55); }
+    .sbtn:hover{ border-color: rgba(154,123,72,.55); }
     .dots{ display:flex; gap:8px; pointer-events:auto; }
     .dot{
       width:9px; height:9px; border-radius:999px;
-      border:1px solid rgba(255,255,255,.25);
-      background: rgba(255,255,255,.12);
+      border:1px solid rgba(23,23,26,.22);
+      background: rgba(23,23,26,.08);
       cursor:pointer;
     }
-    .dot.active{ background: rgba(214,179,106,.75); border-color: rgba(214,179,106,.9); }
+    .dot.active{ background: rgba(154,123,72,.70); border-color: rgba(154,123,72,.9); }
+
+    /* Fiesta carrusel 2 fotos (sin recorte) */
+    .fiesta-carousel{
+      background:#f6f2ea;
+      border-bottom:1px solid rgba(23,23,26,.08);
+    }
+    .fiesta-carousel .carousel-item{ height:320px; background:#f6f2ea; }
+    .fiesta-carousel img{
+      width:100%;
+      height:320px;
+      object-fit:contain;
+      display:block;
+    }
+
+    /* Vestimenta bootstrap dark->light */
+    .bs-card{
+      background: rgba(255,255,255,.86) !important;
+      border: 1px solid rgba(23,23,26,.10) !important;
+      color: var(--ink) !important;
+    }
+    .list-group-item.bs-li{
+      background: rgba(239,230,215,.35) !important;
+      color: rgba(23,23,26,.72) !important;
+      border-color: rgba(23,23,26,.08) !important;
+    }
+
+    /* Amazon logo */
+    .amazon-logo{
+      height: 20px;
+      width: auto;
+      display:inline-block;
+      vertical-align:middle;
+      transform: translateY(-1px);
+      filter: grayscale(10%);
+    }
 
     /* Footer */
     .footer{
       margin-top:28px;
       padding-top:22px;
-      border-top:1px solid rgba(255,255,255,.10);
+      border-top:1px solid rgba(23,23,26,.10);
       color:var(--muted2);
       text-align:center;
       font-size:13px;
     }
-    code{color:rgba(242,221,170,.9)}
+    code{color:#9a7b48}
   </style>
 </head>
 
 <body>
-  <div class="nav">
+  <div class="navx">
     <div class="nav-inner">
       <div class="brand">
         <b>Alberto & Sofía</b>
@@ -377,25 +400,23 @@
               Gracias por acompañarnos a celebrar este día.
             </p>
 
-            <div class="hero-meta">
-              <div class="meta-row">
-                <div class="pill">📅 <b id="dateText">Sábado 27 de junio de 2026</b></div>
-                <div class="pill">🕒 <b id="timeText">Misa 5:00 PM · Fiesta 7:00 PM</b></div>
-              </div>
+            <div class="mt-3 d-flex flex-wrap gap-2">
+              <div class="pill">📅 <b id="dateText">Sábado 27 de junio de 2026</b></div>
+              <div class="pill">🕒 <b id="timeText">Misa 5:00 PM · Fiesta 7:00 PM</b></div>
+            </div>
 
-              <div class="badge">Cuenta regresiva</div>
-              <div class="count">
-                <div class="cd"><div class="n" id="d">—</div><div class="l">Días</div></div>
-                <div class="cd"><div class="n" id="h">—</div><div class="l">Horas</div></div>
-                <div class="cd"><div class="n" id="m">—</div><div class="l">Min</div></div>
-                <div class="cd"><div class="n" id="s">—</div><div class="l">Seg</div></div>
-              </div>
+            <div class="mt-3 badgex">Cuenta regresiva</div>
+            <div class="count mt-2">
+              <div class="cd"><div class="n" id="d">—</div><div class="l">Días</div></div>
+              <div class="cd"><div class="n" id="h">—</div><div class="l">Horas</div></div>
+              <div class="cd"><div class="n" id="m">—</div><div class="l">Min</div></div>
+              <div class="cd"><div class="n" id="s">—</div><div class="l">Seg</div></div>
+            </div>
 
-              <div class="btnrow">
-                <a class="btn gold" href="#rsvp">✅ Confirmar asistencia</a>
-                <a class="btn" href="#ceremonia">⛪ Ver ceremonia</a>
-                <a class="btn" href="#fiesta">🎉 Ver fiesta</a>
-              </div>
+            <div class="btnrow">
+              <a class="btnx gold" href="#rsvp">✅ Confirmar asistencia</a>
+              <a class="btnx" href="#ceremonia">⛪ Ver ceremonia</a>
+              <a class="btnx" href="#fiesta">🎉 Ver fiesta</a>
             </div>
           </div>
 
@@ -407,13 +428,13 @@
       </div>
     </section>
 
-    <!-- MOMENTOS (slider) -->
-    <section class="section" style="margin-top:22px" id="momentos">
+    <!-- MOMENTOS -->
+    <section class="section" id="momentos">
       <h2>Momentos</h2>
       <p>Algunas fotos para ir calentando el corazón antes del gran día.</p>
 
-      <div class="slider card" style="margin-top:14px">
-        <div class="slider-track" id="momTrack" aria-label="Galería de momentos">
+      <div class="slider cardx" style="margin-top:14px">
+        <div class="slider-track" id="momTrack" aria-label="Carrusel de momentos">
           <div class="slide" style="background-image:url('img/collage_1_playa_sofia_alberto.png')"></div>
           <div class="slide" style="background-image:url('img/collage_2_bosque_sofia_alberto.png')"></div>
           <div class="slide" style="background-image:url('img/collage_3_luces_sofia_alberto.png')"></div>
@@ -426,10 +447,6 @@
           <button class="sbtn" id="next" aria-label="Siguiente">›</button>
         </div>
       </div>
-
-      <p style="margin-top:10px; color:var(--muted2); font-size:13px;">
-        Si no cambian las fotos en GitHub Pages, haz hard refresh: <code>Ctrl+Shift+R</code> (o <code>Cmd+Shift+R</code> en Mac).
-      </p>
     </section>
 
     <!-- CEREMONIA -->
@@ -438,18 +455,18 @@
       <p>Misa <b>5:00 PM</b>. Te sugerimos llegar 15 minutos antes para iniciar puntuales.</p>
 
       <div class="grid">
-        <div class="card">
+        <div class="cardx">
           <div class="media templo"></div>
           <div class="card-inner">
-            <div class="badge">⛪ Templo</div>
+            <div class="badgex">⛪ Templo</div>
             <div class="divider"></div>
 
-            <p><b id="templeName">Templo del Sagrado Corazón de Jesús</b></p>
-            <p class="muted" id="templeAddr">C. Federico del Toro 263, Cd Guzmán Centro, 49000 Cdad. Guzmán, Jal.</p>
+            <p class="mb-1"><b id="templeName">Templo del Sagrado Corazón de Jesús</b></p>
+            <p class="mb-0" id="templeAddr" style="color:var(--muted)">C. Federico del Toro 263, Cd Guzmán Centro, 49000 Cdad. Guzmán, Jal.</p>
 
             <div class="btnrow">
-              <a class="btn" id="templeGoogle" href="#" target="_blank" rel="noopener">🗺️ Google Maps</a>
-              <a class="btn" id="templeApple" href="#" target="_blank" rel="noopener">🍎 Apple Maps</a>
+              <a class="btnx" id="templeGoogle" href="#" target="_blank" rel="noopener">🗺️ Google Maps</a>
+              <a class="btnx" id="templeApple" href="#" target="_blank" rel="noopener">🍎 Apple Maps</a>
             </div>
           </div>
         </div>
@@ -462,22 +479,39 @@
       <p>Recepción desde las <b>7:00 PM</b> en la terraza. Pueden ir llegando.</p>
 
       <div class="grid">
-        <div class="card">
-          <div class="media salon"></div>
+        <div class="cardx">
+
+          <div id="fiestaCarousel" class="carousel slide fiesta-carousel" data-bs-ride="carousel" data-bs-interval="3000" data-bs-pause="hover">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="img/terraza1.png" alt="Terraza 1">
+              </div>
+              <div class="carousel-item">
+                <img src="img/terraza2.png" alt="Terraza 2">
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#fiestaCarousel" data-bs-slide="prev" aria-label="Anterior foto terraza">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#fiestaCarousel" data-bs-slide="next" aria-label="Siguiente foto terraza">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            </button>
+          </div>
+
           <div class="card-inner">
-            <div class="badge">🎉 Terraza</div>
+            <div class="badgex">🎉 Terraza</div>
             <div class="divider"></div>
 
-            <p><b id="partyName">Quinta de Leos</b></p>
-            <p class="muted" id="partyAddr">Cd. Guzmán, Jalisco</p>
+            <p class="mb-1"><b id="partyName">Quinta de Leos (Terraza)</b></p>
+            <p class="mb-0" id="partyAddr" style="color:var(--muted)">Cd. Guzmán, Jalisco</p>
 
             <div class="btnrow">
-              <a class="btn" id="partyGoogle" href="#" target="_blank" rel="noopener">🗺️ Google Maps</a>
-              <a class="btn" id="partyApple" href="#" target="_blank" rel="noopener">🍎 Apple Maps</a>
+              <a class="btnx" id="partyGoogle" href="#" target="_blank" rel="noopener">🗺️ Google Maps</a>
+              <a class="btnx" id="partyApple" href="#" target="_blank" rel="noopener">🍎 Apple Maps</a>
             </div>
 
             <div class="divider"></div>
-            <div class="badge">🧭 Mapa</div>
+            <div class="badgex">🧭 Mapa</div>
             <div style="margin-top:10px">
               <iframe
                 src="https://www.google.com/maps?output=embed&q=Quinta%20de%20Leos&ll=19.7295873437685,-103.46799473101152&z=16"
@@ -486,13 +520,6 @@
                 referrerpolicy="no-referrer-when-downgrade">
               </iframe>
             </div>
-
-            <div class="divider"></div>
-            <p><b>Cómo llegar</b></p>
-            <ul>
-              <li>Te recomendamos usar el botón de Google Maps para ruta directa.</li>
-              <li>Si vienes con tiempo, considera tráfico y estacionamiento.</li>
-            </ul>
           </div>
         </div>
       </div>
@@ -504,14 +531,15 @@
       <p>Tu presencia es lo más importante. Si deseas obsequiarnos algo, la lista nos ayuda a evitar repetidos.</p>
 
       <div class="grid">
-        <div class="card">
+        <div class="cardx">
           <div class="card-inner">
-            <div class="badge">🎁 Lista</div>
+            <div class="badgex">🎁 Lista</div>
             <div class="divider"></div>
 
             <div class="btnrow">
-              <a class="btn gold" id="amazonList" href="https://www.amazon.com.mx/" target="_blank" rel="noopener">
-                🛒 Ver lista en Amazon
+              <a class="btnx gold" id="amazonList" href="https://www.amazon.com.mx/" target="_blank" rel="noopener">
+                <img class="amazon-logo" src="img/Amazon_logo.png" alt="Amazon">
+                Ver lista en Amazon
               </a>
             </div>
 
@@ -532,30 +560,58 @@
       <p><span class="accent"><b>Formal</b></span>. Gracias por ayudarnos a mantener la estética del evento.</p>
 
       <div class="grid">
-        <div class="card">
+        <div class="cardx">
           <div class="card-inner">
-            <div class="badge">👔 Formal</div>
-            <div class="divider"></div>
-            <div class="cols">
-              <div>
-                <p><b>Mujeres</b></p>
-                <ul>
-                  <li>Vestido largo</li>
-                  <li>Estampado discreto</li>
-                  <li><b>No</b> vestido blanco, beige o colores similares</li>
-                  <li>Nada de colores claros</li>
-                </ul>
+            <div class="row g-3 align-items-stretch">
+              <div class="col-12 col-lg-5">
+                <div class="bs-card card h-100 shadow-sm rounded-4 overflow-hidden">
+                  <img src="img/vestimenta.png" class="img-fluid" alt="Referencia vestimenta">
+                  <div class="card-body">
+                    <div class="badgex">👗👔 Formal</div>
+                    <p class="mt-2 mb-0" style="color:var(--muted); line-height:1.75">
+                      Por favor evita colores que se confundan con blanco/beige muy claro.
+                    </p>
+                  </div>
+                </div>
               </div>
-              <div>
-                <p><b>Hombres</b></p>
-                <ul>
-                  <li>Traje</li>
-                  <li>Zapatos formales</li>
-                  <li>Corbata sencilla</li>
-                  <li>Camisa formal de manga larga (no usar colores claros)</li>
-                </ul>
+
+              <div class="col-12 col-lg-7">
+                <div class="bs-card card h-100 shadow-sm rounded-4">
+                  <div class="card-body">
+                    <div class="row g-3">
+                      <div class="col-12 col-md-6">
+                        <h5 class="mb-2" style="font-family:'Playfair Display',serif;">Mujeres</h5>
+                        <ul class="list-group list-group-flush rounded-3 overflow-hidden">
+                          <li class="list-group-item bs-li">Vestido largo</li>
+                          <li class="list-group-item bs-li">Estampado discreto</li>
+                          <li class="list-group-item bs-li"><b style="color:var(--ink)">No</b> vestido blanco, beige o tonos similares</li>
+                          <li class="list-group-item bs-li">Evitar colores muy claros</li>
+                        </ul>
+                      </div>
+
+                      <div class="col-12 col-md-6">
+                        <h5 class="mb-2" style="font-family:'Playfair Display',serif;">Hombres</h5>
+                        <ul class="list-group list-group-flush rounded-3 overflow-hidden">
+                          <li class="list-group-item bs-li">Traje</li>
+                          <li class="list-group-item bs-li">Zapatos formales</li>
+                          <li class="list-group-item bs-li">Corbata sencilla</li>
+                          <li class="list-group-item bs-li">Camisa formal manga larga (evitar colores claros)</li>
+                        </ul>
+                      </div>
+                    </div>
+
+                    <div class="mt-3 p-3 rounded-4" style="border:1px solid rgba(23,23,26,.10); background:rgba(239,230,215,.35)">
+                      <div class="d-flex flex-wrap gap-2 align-items-center">
+                        <span class="badgex">✨ Tip</span>
+                        <span style="color:var(--muted)">Si tienes duda con tu outfit, mándanos foto por WhatsApp y te decimos rápido.</span>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
               </div>
             </div>
+
           </div>
         </div>
       </div>
@@ -570,14 +626,14 @@
       </p>
 
       <div class="grid">
-        <div class="card">
+        <div class="cardx">
           <div class="card-inner">
-            <div class="badge">✅ Registro</div>
+            <div class="badgex">✅ Registro</div>
             <div class="divider"></div>
 
             <div class="btnrow">
-              <a class="btn gold" id="rsvpLink" href="#" target="_blank" rel="noopener">📝 Abrir formulario RSVP</a>
-              <a class="btn" id="whats" href="#" target="_blank" rel="noopener">💬 WhatsApp (Alberto)</a>
+              <a class="btnx gold" id="rsvpLink" href="#" target="_blank" rel="noopener">📝 Abrir formulario RSVP</a>
+              <a class="btnx" id="whats" href="#" target="_blank" rel="noopener">💬 WhatsApp (Alberto)</a>
             </div>
 
             <p style="margin-top:10px; color:var(--muted2); font-size:13px;">
@@ -586,7 +642,7 @@
 
             <div class="divider"></div>
 
-            <p class="muted" style="margin-bottom:10px">
+            <p style="margin-bottom:10px; color:var(--muted)">
               Cuando tengas tu Google Form real, pega aquí el link de embed en el <code>src</code> del iframe:
             </p>
 
@@ -607,13 +663,16 @@
 
   </div>
 
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+          crossorigin="anonymous"></script>
+
   <script>
     // ======================
     // CONFIG (EDITA AQUÍ)
     // ======================
-    // Nota: si quieres hora local de México sin broncas de UTC, usa:
-    // new Date(2026, 5, 27, 17, 0, 0)  // mes 5 = junio
-    const weddingDate = new Date(2026, 5, 27, 17, 0, 0); // 27 Jun 2026 5:00 PM
+    const weddingDate = new Date("2026-06-27T17:00:00"); // misa 5:00 PM (hora local)
 
     const config = {
       city: "Cd. Guzmán, Jalisco",
@@ -669,9 +728,9 @@
 
     function tick(){
       const now = new Date();
-      const diff = weddingDate - now;
+      const diff = weddingDate.getTime() - now.getTime();
 
-      if(diff <= 0){
+      if(!isFinite(diff) || diff <= 0){
         elD.textContent = "00"; elH.textContent = "00"; elM.textContent = "00"; elS.textContent = "00";
         return;
       }
@@ -691,18 +750,25 @@
     setInterval(tick, 1000);
 
     // ======================
-    // Slider Momentos (auto + manual)
+    // Momentos slider (AUTO 3s + scroll/touch + flechas)
     // ======================
     const track = document.getElementById("momTrack");
     const dotsEl = document.getElementById("dots");
     const slides = track ? Array.from(track.children) : [];
     let idx = 0;
     let timer = null;
+    let resumeTimer = null;
 
-    function go(i){
+    function clampIndex(i){
+      if(slides.length === 0) return 0;
+      return (i + slides.length) % slides.length;
+    }
+
+    function go(i, behavior="smooth"){
       if(!track || slides.length===0) return;
-      idx = (i + slides.length) % slides.length;
-      track.scrollTo({ left: idx * track.clientWidth, behavior: "smooth" });
+      idx = clampIndex(i);
+      const w = track.clientWidth || 1;
+      track.scrollTo({ left: idx * w, behavior });
       updateDots();
     }
 
@@ -718,44 +784,55 @@
         const b = document.createElement("button");
         b.className = "dot" + (j===0 ? " active" : "");
         b.type = "button";
-        b.addEventListener("click", ()=>{ stopAuto(); go(j); startAuto(); });
+        b.setAttribute("aria-label", "Ir a foto " + (j+1));
+        b.addEventListener("click", ()=>{
+          pauseAuto(true);
+          go(j);
+        });
         dotsEl.appendChild(b);
       });
     }
 
     function startAuto(){
       stopAuto();
-      timer = setInterval(()=> go(idx+1), 5000); // ✅ cada 5 segundos
+      timer = setInterval(()=> go(idx+1), 3000); // cada 3s
     }
+
     function stopAuto(){
       if(timer) clearInterval(timer);
       timer = null;
     }
 
-    if(track){
+    function pauseAuto(resumeLater){
+      stopAuto();
+      if(resumeTimer) clearTimeout(resumeTimer);
+      resumeTimer = null;
+      if(resumeLater){
+        resumeTimer = setTimeout(()=> startAuto(), 8000);
+      }
+    }
+
+    if(track && slides.length){
       buildDots();
       startAuto();
-      window.addEventListener("resize", ()=> go(idx));
 
       const prev = document.getElementById("prev");
       const next = document.getElementById("next");
-      if(prev) prev.addEventListener("click", ()=>{ stopAuto(); go(idx-1); startAuto(); });
-      if(next) next.addEventListener("click", ()=>{ stopAuto(); go(idx+1); startAuto(); });
+      if(prev) prev.addEventListener("click", ()=>{ pauseAuto(true); go(idx-1); });
+      if(next) next.addEventListener("click", ()=>{ pauseAuto(true); go(idx+1); });
 
-      // ✅ si el usuario hace scroll manual, actualiza el índice/dots
-      track.addEventListener("scroll", ()=>{
+      const onScroll = ()=>{
         const w = track.clientWidth || 1;
         const newIdx = Math.round(track.scrollLeft / w);
-        if(newIdx !== idx){ idx = newIdx; updateDots(); }
-      }, { passive:true });
+        if(newIdx !== idx){ idx = clampIndex(newIdx); updateDots(); }
+        pauseAuto(true);
+      };
+      track.addEventListener("scroll", onScroll, { passive:true });
 
-      // ✅ pausa auto mientras el usuario interactúa (touch/mouse), y reanuda
-      ["pointerdown","touchstart","mousedown","wheel"].forEach(evt=>{
-        track.addEventListener(evt, ()=> stopAuto(), { passive:true });
-      });
-      ["pointerup","touchend","mouseup","mouseleave"].forEach(evt=>{
-        track.addEventListener(evt, ()=> startAuto(), { passive:true });
-      });
+      window.addEventListener("resize", ()=> go(idx, "auto"));
+
+      track.addEventListener("pointerdown", ()=> pauseAuto(true), { passive:true });
+      track.addEventListener("wheel", ()=> pauseAuto(true), { passive:true });
     }
   </script>
 </body>
