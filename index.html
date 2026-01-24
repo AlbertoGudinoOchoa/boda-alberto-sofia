@@ -93,17 +93,18 @@
       .hero-grid{grid-template-columns:1fr; min-height:auto}
     }
 
+    /* ✅ FOTO PRINCIPAL: usa el collage 1 tal cual */
     .hero-photo{
       position:relative;
       min-height:520px;
       background:
         linear-gradient(90deg, rgba(7,8,11,.10), rgba(7,8,11,.80)),
-        url("img/hero.jpg") center/cover no-repeat;
+        url("img/collage_1_playa_sofia_alberto.png") center/cover no-repeat;
     }
     @media (max-width:920px){
       .hero-photo{min-height:420px; background:
         linear-gradient(180deg, rgba(7,8,11,.15), rgba(7,8,11,.88)),
-        url("img/hero.jpg") center/cover no-repeat;}
+        url("img/collage_1_playa_sofia_alberto.png") center/cover no-repeat;}
     }
     .hero-photo::after{
       content:"";
@@ -212,8 +213,9 @@
       background:#0f1118 center/cover no-repeat;
       border-bottom:1px solid rgba(255,255,255,.08);
     }
-    .media.templo{background-image:url("img/templo.jpg")}
-    .media.salon{background-image:url("img/terraza.jpg")}
+    /* ✅ NOMBRES EXACTOS */
+    .media.templo{background-image:url("img/Templo.png")}
+    .media.salon{background-image:url("img/Terraza_fiesta.png")}
 
     /* Buttons */
     .btnrow{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
@@ -397,10 +399,11 @@
 
       <div class="slider card" style="margin-top:14px">
         <div class="slider-track" id="momTrack">
-          <div class="slide" style="background-image:url('img/momento-1.png')"></div>
-          <div class="slide" style="background-image:url('img/momento-2.png')"></div>
-          <div class="slide" style="background-image:url('img/momento-3.png')"></div>
-          <div class="slide" style="background-image:url('img/momento-4.png')"></div>
+          <!-- ✅ NOMBRES EXACTOS -->
+          <div class="slide" style="background-image:url('img/collage_1_playa_sofia_alberto.png')"></div>
+          <div class="slide" style="background-image:url('img/collage_2_bosque_sofia_alberto.png')"></div>
+          <div class="slide" style="background-image:url('img/collage_3_luces_sofia_alberto.png')"></div>
+          <div class="slide" style="background-image:url('img/collage_4_ultimo_sofia_alberto.png')"></div>
         </div>
 
         <div class="slider-ui">
@@ -409,10 +412,6 @@
           <button class="sbtn" id="next" aria-label="Siguiente">›</button>
         </div>
       </div>
-
-      <p style="margin-top:10px; color:var(--muted2); font-size:13px;">
-        Si tus collages son .jpg, cambia <code>.png</code> por <code>.jpg</code> en las rutas.
-      </p>
     </section>
 
     <!-- CEREMONIA -->
@@ -570,7 +569,7 @@
             <div class="divider"></div>
 
             <p class="muted" style="margin-bottom:10px">
-              Si quieres incrustar el formulario aquí (embed), pega el link en el <code>src</code> del iframe:
+              Cuando tengas tu Google Form real, pega aquí el link de embed en el <code>src</code> del iframe:
             </p>
 
             <iframe
@@ -718,7 +717,7 @@
       const prev = document.getElementById("prev");
       const next = document.getElementById("next");
       if(prev) prev.addEventListener("click", ()=>{ stopAuto(); go(idx-1); startAuto(); });
-      if(next) next.addEventListener("click", ()=>{ stopAuto(); go(idx+1); startAuto(); });
+      if(next) next.addEvent tListener("click", ()=>{ stopAuto(); go(idx+1); startAuto(); });
 
       track.addEventListener("scroll", ()=>{
         const w = track.clientWidth || 1;
